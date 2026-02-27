@@ -30,6 +30,7 @@ public class AuditLogService {
         return auditLogRepository.findById(id);
     }
 
+    //Las llaves foraneas no estan se necesita asesoria
     public AuditLog update(Long id, AuditLog auditLogDetails){
         AuditLog auditLog=auditLogRepository.findById(id)
         .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"No encontrado"));
