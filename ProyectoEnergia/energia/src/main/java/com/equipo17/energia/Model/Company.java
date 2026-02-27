@@ -1,3 +1,7 @@
+package com.equipo17.energia.Model;
+
+import jakarta.persistence.*;
+//se necesita crear indexes
 @Entity
 @Table(name = "company")
 
@@ -12,4 +16,5 @@ public class Company {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;
+
 }

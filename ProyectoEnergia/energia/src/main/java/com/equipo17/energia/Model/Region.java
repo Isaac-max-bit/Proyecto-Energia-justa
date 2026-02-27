@@ -1,3 +1,7 @@
+package com.equipo17.energia.Model;
+
+import jakarta.persistence.*;
+	//se necesita crear indexes
 @Entity
 @Table(name = "region")
 
@@ -40,4 +44,6 @@ public class Region {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+
+
 }

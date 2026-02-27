@@ -1,3 +1,8 @@
+package com.equipo17.energia.Model;
+
+import jakarta.persistence.*;
+
+
 @Entity
 @Table(name = "measurement_type")
 public class MeasurementType  {

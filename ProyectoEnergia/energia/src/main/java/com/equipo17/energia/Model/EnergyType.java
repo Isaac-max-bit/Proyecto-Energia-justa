@@ -1,4 +1,8 @@
 package com.equipo17.energia.Model;
+
+import jakarta.persistence.*;
+
+
 @Entity
 @Table(name = "energy_type")
 public class EnergyType {

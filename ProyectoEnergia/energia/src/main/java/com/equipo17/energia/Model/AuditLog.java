@@ -1,3 +1,9 @@
+package com.equipo17.energia.Model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "auditlog")
 public class AuditLog {

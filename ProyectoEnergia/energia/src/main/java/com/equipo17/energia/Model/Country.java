@@ -1,13 +1,5 @@
 package com.equipo17.energia.Model;
 
-import java.lang.annotation.Inherited;
-import java.time.LocalDateTime;
-
-import javax.annotation.processing.Generated;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import jakarta.persistence.*;
 
 @Entity

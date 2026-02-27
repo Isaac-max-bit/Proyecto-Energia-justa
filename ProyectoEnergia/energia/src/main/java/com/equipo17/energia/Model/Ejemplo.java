@@ -1,9 +1,9 @@
-import jakarta.persistence.*;
+/* import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "detalles_pedido")
-public class ejemplo {
+public class Ejemplo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +27,4 @@ public class ejemplo {
 	private Producto producto;
 
 
-}
+} */
