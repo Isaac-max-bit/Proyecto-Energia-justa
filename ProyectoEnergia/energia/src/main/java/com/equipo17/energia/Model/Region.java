@@ -1,7 +1,7 @@
-package com.equipo17.energia.Model;
 @Entity
-@Table(name = "energy_type")
-public class EnergyType {
+@Table(name = "region")
+
+public class Region {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -9,11 +9,12 @@ public class EnergyType {
 	@Column(nullable=false,unique = true)
 	private String name;
 
-	@Column(nullable=false)
-	private boolean renewbable;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "country_id", nullable = false)
+	private Country country;
 
-	public EnergyType() {
-
+	public Region(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -32,11 +33,11 @@ public class EnergyType {
 		this.name = name;
 	}
 
-	public boolean isRenewbable() {
-		return renewbable;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setRenewbable(boolean renewbable) {
-		this.renewbable = renewbable;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 }

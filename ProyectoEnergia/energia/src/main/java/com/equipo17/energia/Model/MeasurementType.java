@@ -1,7 +1,6 @@
-package com.equipo17.energia.Model;
 @Entity
-@Table(name = "energy_type")
-public class EnergyType {
+@Table(name = "measurement_type")
+public class MeasurementType  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -10,9 +9,9 @@ public class EnergyType {
 	private String name;
 
 	@Column(nullable=false)
-	private boolean renewbable;
+	private String unit;
 
-	public EnergyType() {
+	public MeasurementType() {
 
 	}
 
@@ -32,11 +31,11 @@ public class EnergyType {
 		this.name = name;
 	}
 
-	public boolean isRenewbable() {
-		return renewbable;
+	public String getUnit() {
+		return unit;
 	}
 
-	public void setRenewbable(boolean renewbable) {
-		this.renewbable = renewbable;
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 }
