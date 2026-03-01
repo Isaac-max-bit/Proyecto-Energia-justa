@@ -1,8 +1,5 @@
 package com.equipo17.energia.Model;
 
-/* import java.lang.annotation.Inherited;
-import javax.annotation.processing.Generated; */
-
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;

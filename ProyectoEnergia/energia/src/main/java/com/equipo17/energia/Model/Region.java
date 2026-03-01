@@ -1,49 +1,62 @@
 package com.equipo17.energia.Model;
-
 import jakarta.persistence.*;
-	//se necesita crear indexes
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Table(name = "region")
-
+@Table(name = "region",
+       uniqueConstraints = @UniqueConstraint(columnNames = {"name", "country_id"}))
 public class Region {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	@Column(nullable=false,unique = true)
-	private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "country_id", nullable = false)
-	private Country country;
+    @Column(nullable = false)
+    private String name;
 
-	public Region(Long id) {
-		this.id = id;
-	}
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "country_id", nullable = false)
+    private Country country;
+      @JsonIgnore
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PowerPlant> powerPlants;
 
-	public Long getId() {
-		return id;
-	}
+     
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Region() {}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Long getId() {
+        return this.id;
+    }
 
-	public Country getCountry() {
-		return country;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCountry(Country country) {
-		this.country = country;
-	}
+    public String getName() {
+        return this.name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Country getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<PowerPlant> getPowerPlants() {
+        return this.powerPlants;
+    }
+
+    public void setPowerPlants(List<PowerPlant> powerPlants) {
+        this.powerPlants = powerPlants;
+    }
 
 }
