@@ -3,9 +3,9 @@ package com.equipo17.energia.Service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
+//import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+//import org.springframework.web.server.ResponseStatusException;
 
 import com.equipo17.energia.Model.AuditLog;
 import com.equipo17.energia.Repository.AuditLogRepository;
@@ -30,8 +30,9 @@ public class AuditLogService {
         return auditLogRepository.findById(id);
     }
 
-    //Las llaves foraneas no estan se necesita asesoria
-    public AuditLog update(Long id, AuditLog auditLogDetails){
+    //no hay getters ni setter asesoria
+
+    /* public AuditLog update(Long id, AuditLog auditLogDetails){
         AuditLog auditLog=auditLogRepository.findById(id)
         .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"No encontrado"));
 
@@ -44,5 +45,5 @@ public class AuditLogService {
         }
 
         return auditLogRepository.save(auditLog);
-    }
+    } */
 }

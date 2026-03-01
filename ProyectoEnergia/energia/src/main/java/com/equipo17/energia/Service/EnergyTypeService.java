@@ -30,6 +30,7 @@ public class EnergyTypeService {
         return energyTypeRepository.findById(id);
     }
 
+    //asesoria 
     public EnergyType update(Long id, EnergyType energyTypeDetails){
         EnergyType energyType=energyTypeRepository.findById(id)
         .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Tipo de energia no encontrado"));
@@ -38,11 +39,11 @@ public class EnergyTypeService {
             energyType.setName(energyTypeDetails.getName());
         }
 
-        if(energyTypeDetails.isRenewbable()==true){
+        /* if(energyTypeDetails.isRenewbable()==true){
             energyType.setRenewbable(true);
         }else{
             energyType.setRenewbable(false);
-        }
+        } */
 
         return energyTypeRepository.save(energyType);
     }
