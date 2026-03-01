@@ -1,7 +1,5 @@
 package com.equipo17.energia.Service;
 
-//Se necesita completar
-
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-//import com.equipo17.energia.dto.LoginRequest;
+import com.equipo17.energia.dto.LoginRequest;
 import com.equipo17.energia.Model.User;
 import com.equipo17.energia.Repository.UserRepository;
-//import com.equipo17.energia.exception.ResourceNotFoundException;
+
+import com.equipo17.energia.exception.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -41,8 +40,7 @@ public class UserService {
     public User update(Long id, User userDetails){
          User user=userRepository.findById(id)
         .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario no encontrado"));
-        //Se puede así tambíen
-        //.orElseThrow(()->new RuntimeException("Usuario no encontrado"));
+     
         if(userDetails.getUsername()!=null && !userDetails.getUsername().trim().isEmpty()){
             user.setUsername(userDetails.getUsername());
         }
@@ -58,7 +56,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-   /*  public String login(LoginRequest request){
+    public String login(LoginRequest request){
         Optional<User> optionalUser=userRepository.findByUsername(request.getUsername());
         if(optionalUser.isEmpty()){
             throw new ResourceNotFoundException("Usuario no encontrado");
@@ -68,5 +66,5 @@ public class UserService {
             throw new ResourceNotFoundException("Contraseña incorrecta");
         }
         return "Login correcto";
-    } */
+    }
 }

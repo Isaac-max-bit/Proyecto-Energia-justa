@@ -1,47 +1,51 @@
 package com.equipo17.energia.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.equipo17.energia.Model.Region;
+import com.equipo17.energia.Model.Country;
 import com.equipo17.energia.Repository.RegionRepository;
+import com.equipo17.energia.Repository.CountryRepository;
+
+import com.equipo17.energia.exception.ResourceNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class RegionService {
+
     private final RegionRepository regionRepository;
+    private final CountryRepository countryRepository;
 
-    public RegionService(RegionRepository regionRepository){
-        this.regionRepository=regionRepository;
-    }
+    public Region save(Region region) {
 
-    public Region creaRegion(Region region){
+        Long countryId = region.getCountry().getId();
+
+        Country country = countryRepository.findById(countryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Country not found"));
+
+        if (regionRepository.existsByNameAndCountryId(region.getName(), countryId)) {
+            throw new ResourceNotFoundException("Region already exists in this country");
+        }
+
+        region.setCountry(country);
+
         return regionRepository.save(region);
     }
 
-    public List<Region> findAll(){
+    public List<Region> findAll() {
         return regionRepository.findAll();
     }
 
-    public Optional<Region> findById(Long id){
-        return regionRepository.findById(id);
+    public Region findById(Long id) {
+        return regionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Region not found"));
     }
 
-    
-    //Las llaves foraneas no estan se necesita asesoria
-    public Region update(Long id, Region regionDetails){
-        Region region=regionRepository.findById(id)
-        .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"region no encontrada"));
-
-        if(regionDetails.getName()!=null && regionDetails.getName().trim().isEmpty()){
-            region.setName(regionDetails.getName());
-        }
-
-        return regionRepository.save(region);
-
-
+    public List<Region> findByCountry(Long countryId) {
+        return regionRepository.findByCountryId(countryId);
     }
 }
