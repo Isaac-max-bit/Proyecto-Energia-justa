@@ -1,1 +1,21 @@
-<p>user.component works!</p>
+
+<div class="row">
+    <div class="row g-3">
+
+        @for (u of users; track u.id){
+        <div class="card  mx-3" style="width: 18rem;">
+        <div class="card-header">
+            {{u.id}}: {{u.username}}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{u.email}}</li>
+            <li class="list-group-item">{{u.password}}</li>
+            <li class="list-group-item">{{u.role}}</li>
+            <li class="list-group-item">{{u.createdAt}}</li>
+            <li class="list-group-item">{{u.updatedAt}}</li>
+        </ul>
+        </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "username": "usuarioadmin",
+        "email": "admin@correo.com",
+        "password": "contraseñasecreta",
+        "role": "ADMIN",
+        "createdAt": "TIEMPO",
+        "updatedAt": "TIEMPO2"
+    },
+        {
+        "id": 2,
+        "username": "usuarioanalizador",
+        "email": "analisi@correo.com",
+        "password": "contraseñasecreta",
+        "role": "ANALYSIS",
+        "createdAt": "TIEMPO",
+        "updatedAt": "TIEMPO2"
+    },
+    {
+        "id": 3,
+        "username":"usuariousuario",
+        "email":"usuario@correo.com",
+        "password":"contraseñasecreta",
+        "role":"USER",
+        "createdAt": "TIEMPO",
+        "updatedAt": "TIEMPO2"
+    }
+]
