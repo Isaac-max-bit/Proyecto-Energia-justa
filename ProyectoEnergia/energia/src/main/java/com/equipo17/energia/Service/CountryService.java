@@ -1,36 +1,83 @@
-package com.equipo17.energia.Service;
+package com.equipo17.energia.service;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.equipo17.energia.Model.Country;
-import com.equipo17.energia.Repository.CountryRepository;
+import com.equipo17.energia.model.Country;
+import com.equipo17.energia.repository.CountryRepository;
 import com.equipo17.energia.exception.ResourceNotFoundException;
+import com.equipo17.energia.exception.DuplicateResourceException;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CountryService {
 
     private final CountryRepository countryRepository;
 
+    // =============================
+    // CREATE
+    // =============================
     public Country save(Country country) {
 
-        if (countryRepository.existsByName(country.getName())) {
-            throw new ResourceNotFoundException("el país ya existe");
+        if (countryRepository.existsByNameIgnoreCase(country.getName())) {
+            throw new DuplicateResourceException("El país ya existe");
         }
 
         return countryRepository.save(country);
     }
 
+    // =============================
+    // READ ALL
+    // =============================
+    @Transactional(readOnly = true)
     public List<Country> findAll() {
         return countryRepository.findAll();
     }
 
+    // =============================
+    // READ BY ID
+    // =============================
+    @Transactional(readOnly = true)
     public Country findById(Long id) {
         return countryRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("País no encontrado"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("País no encontrado con id: " + id));
+    }
+
+    // =============================
+    // UPDATE
+    // =============================
+    public Country update(Long id, Country updatedCountry) {
+
+        Country existingCountry = findById(id);
+
+        if (!existingCountry.getName().equalsIgnoreCase(updatedCountry.getName())
+                && countryRepository.existsByNameIgnoreCase(updatedCountry.getName())) {
+
+            throw new DuplicateResourceException("Ya existe un país con ese nombre");
+        }
+
+        existingCountry.setName(updatedCountry.getName());
+        existingCountry.setPopulation(updatedCountry.getPopulation());
+        existingCountry.setRenewableEnergyProduction(updatedCountry.getRenewableEnergyProduction());
+        existingCountry.setFossilEnergyProduction(updatedCountry.getFossilEnergyProduction());
+        existingCountry.setCarbonEmissions(updatedCountry.getCarbonEmissions());
+
+        return countryRepository.save(existingCountry);
+    }
+
+    // =============================
+    // DELETE
+    // =============================
+    public void delete(Long id) {
+
+        Country country = findById(id);
+
+        countryRepository.delete(country);
     }
 }
