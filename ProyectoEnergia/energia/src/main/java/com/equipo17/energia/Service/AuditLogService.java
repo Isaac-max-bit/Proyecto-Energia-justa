@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,20 +30,4 @@ public class AuditLogService {
         return auditLogRepository.findById(id);
     }
 
-    //no hay getters ni setter asesoria
-
-    /* public AuditLog update(Long id, AuditLog auditLogDetails){
-        AuditLog auditLog=auditLogRepository.findById(id)
-        .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"No encontrado"));
-
-        if(auditLogDetails.getAction()!=null && auditLogDetails.getAction().trim().isEmpty()){
-            auditLog.setAction(auditLogDetails.getAction());
-        }
-
-        if(auditLogDetails.getAction_date()!=null){
-            auditLog.setAction_date(auditLogDetails.getAction_date());
-        }
-
-        return auditLogRepository.save(auditLog);
-    } */
-}
+} */

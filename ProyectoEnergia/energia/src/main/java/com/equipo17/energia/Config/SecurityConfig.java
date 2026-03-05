@@ -20,8 +20,16 @@ public class SecurityConfig {
         http
         .csrf(csrf -> csrf.disable()) // si no se desactiva falla POST/PUT/DELETE
         .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/api/users").permitAll()
+        .requestMatchers("/api/users/{id}").permitAll()
+         .requestMatchers("/api/users").permitAll()
         .requestMatchers("/api/users/login").permitAll()
+         .requestMatchers("/api/country").permitAll()
+         .requestMatchers("/api/region").permitAll()
+         .requestMatchers("/api/company").permitAll() 
+         .requestMatchers("/api/energy-type").permitAll()
+         .requestMatchers("/api/power-plant").permitAll()
+          .requestMatchers("/api/measurement-type").permitAll()
+             .requestMatchers("/api/energy-record").permitAll()
         .anyRequest().authenticated())
         .formLogin(form -> form.disable())
         .httpBasic(basic -> basic.disable());

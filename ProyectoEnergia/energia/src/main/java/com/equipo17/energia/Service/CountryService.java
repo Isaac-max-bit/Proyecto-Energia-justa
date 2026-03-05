@@ -1,18 +1,45 @@
-package com.equipo17.energia.service;
+package com.equipo17.energia.Service;
 
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
-import com.equipo17.energia.model.Country;
-import com.equipo17.energia.repository.CountryRepository;
+import com.equipo17.energia.Model.Country;
+import com.equipo17.energia.Repository.CountryRepository;
 import com.equipo17.energia.exception.ResourceNotFoundException;
-import com.equipo17.energia.exception.DuplicateResourceException;
 
 @Service
+@RequiredArgsConstructor
+public class CountryService {
+
+    private final CountryRepository countryRepository;
+
+    public Country save(Country country) {
+
+        if (countryRepository.existsByName(country.getName())) {
+            throw new ResourceNotFoundException("El país ya existe");
+        }
+
+        return countryRepository.save(country);
+    }
+
+    public List<Country> findAll() {
+        return countryRepository.findAll();
+    }
+
+    public Country findById(Long id) {
+        return countryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("País no encontrado"));
+    }
+}
+
+
+//import com.equipo17.energia.exception.DuplicateResourceException;
+
+/* @Service
 @RequiredArgsConstructor
 @Transactional
 public class CountryService {
@@ -80,4 +107,4 @@ public class CountryService {
 
         countryRepository.delete(country);
     }
-}
+} */

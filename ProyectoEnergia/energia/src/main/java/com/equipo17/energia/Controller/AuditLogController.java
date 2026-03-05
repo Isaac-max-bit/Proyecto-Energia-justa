@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Model.AuditLog;
 import com.equipo17.energia.Service.AuditLogService;
@@ -54,4 +54,4 @@ public class AuditLogController {
 		auditLogService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-}
+} */

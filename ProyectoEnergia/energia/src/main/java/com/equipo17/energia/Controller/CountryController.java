@@ -1,18 +1,43 @@
-package com.equipo17.energia.controller;
+package com.equipo17.energia.Controller;
 
-import com.equipo17.energia.service.CountryService;
-import com.equipo17.energia.model.Country;
+import com.equipo17.energia.Service.CountryService;
+import com.equipo17.energia.Model.Country;
 
-import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
+//import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
+//import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/country")
+@RequiredArgsConstructor
+public class CountryController {
+
+    private final CountryService countryService;
+
+    @PostMapping
+    public ResponseEntity<Country> create(@RequestBody Country country) {
+        return ResponseEntity.ok(countryService.save(country));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Country>> findAll() {
+        return ResponseEntity.ok(countryService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Country> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(countryService.findById(id));
+    }
+}
+
+//import jakarta.validation.Valid;
+
+/* @RestController
 @RequestMapping("/api/countries")
 @RequiredArgsConstructor
 public class CountryController {
@@ -68,4 +93,4 @@ public class CountryController {
         countryService.delete(id);
         return ResponseEntity.noContent().build();
     }
-}
+} */

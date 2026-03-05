@@ -20,10 +20,10 @@ public class CompanyService {
         Long countryId = company.getCountry().getId();
 
         Country country = countryRepository.findById(countryId)
-                .orElseThrow(() -> new ResourceNotFoundException("Country not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("País no encontrado"));
 
         if (companyRepository.existsByNameAndCountryId(company.getName(), countryId)) {
-            throw new ResourceNotFoundException("Company already exists in this country");
+            throw new ResourceNotFoundException("La compañia ya existe en este país");
         }
 
         company.setCountry(country);
@@ -37,7 +37,7 @@ public class CompanyService {
 
     public Company findById(Long id) {
         return companyRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Company not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("compañia no encontrada"));
     }
 
     public List<Company> findByCountry(Long countryId) {
