@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { CountryComponent } from './view/country/country.component/country.component';
+import { LoginComponent } from './view/login/login.component';
 import { UserComponent } from './view/user/user.component/user.component';
 
 export const routes: Routes = [
-    {path: 'countries', component: CountryComponent},
-    {path: 'users', component: UserComponent}
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Al abrir, va al login
+  { path: 'login', component: LoginComponent },        // Pantalla de diseño verde
+  { path: 'usuarios', component: UserComponent }       // Pantalla de tarjetas
 ];

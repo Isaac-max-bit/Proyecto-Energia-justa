@@ -1,0 +1,37 @@
+<div class="login-page">
+    <div class="login-card">
+
+        <div class="avatar-header">
+            <div class="avatar-circle">
+                <img src="/images/logo-login.jpg" alt="Logo Energía" class="logo-img">
+            </div>
+            <div class="avatar-plus">+</div>
+        </div>
+
+        <div class="login-tabs">
+            <span class="tab active">Login</span>
+            <span class="tab">Sign Up</span>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" formControlName="email" placeholder="Introduce tu email">
+            </div>
+
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" formControlName="password" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
+                Submit
+            </button>
+
+            <div class="footer-links">
+                <a href="#">FORGET YOUR PASSWORD?</a>
+            </div>
+        </form>
+
+    </div>
+</div>
