@@ -11,6 +11,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class UserComponent {
     users: any[] = [];
+    selecteduser : any;
 
     constructor(private UserSer: UserService, private changeP: ChangeDetectorRef){
             UserSer.getUsers().subscribe(data =>{
@@ -18,5 +19,16 @@ export class UserComponent {
             console.log(this.users);
             this.changeP.detectChanges();
         });
+    }
+
+    onSelectedUser(id : number){
+        if(id != 0){
+            this.UserSer.getUserById(id).subscribe((details : any) =>{
+                this.selecteduser = details;
+                this.changeP.detectChanges();
+            }
+
+            )
+        }
     }
 }

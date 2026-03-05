@@ -4,5 +4,6 @@ import { UserComponent } from './view/user/user.component/user.component';
 
 export const routes: Routes = [
     {path: 'countries', component: CountryComponent},
-    {path: 'users', component: UserComponent}
+    {path: 'users', component: UserComponent},
+    //{path: 'login', component: LoginComponent} Más adelante
 ];
