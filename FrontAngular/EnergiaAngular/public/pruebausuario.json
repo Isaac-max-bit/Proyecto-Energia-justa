@@ -1,9 +1,18 @@
 [
     {
         "id": 1,
-        "username": "admin",
+        "username": "genericAdministrator",
         "email": "admin@energia.com",
         "role": "administrador",
+        "password": "123",
+        "createdAt": "2024-01-02",
+        "updatedAt": "2024-01-01"
+    },
+        {
+        "id": 2,
+        "username": "genericUsername2",
+        "email": "analista@energia.com",
+        "role": "analista",
         "password": "123",
         "createdAt": "2024-01-01",
         "updatedAt": "2024-01-01"

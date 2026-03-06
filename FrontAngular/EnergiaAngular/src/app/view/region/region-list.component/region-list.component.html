@@ -1,0 +1,17 @@
+<h1>LÍNEA DIVISORIA PARA NO PERDER DE VISTA LO IMPORTANTE: FUNCIONA!</h1>
+
+@for (group of groupedRegions | keyvalue; track group.key) {
+  <div class="country-section mb-4">
+    <h2 class="border-bottom">{{ group.key }}</h2> <div class="d-flex flex-wrap gap-3">
+      @for (r of group.value; track r.id) {
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ r.name }}</h5>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @empty {
+  <p>No hay regiones cargadas.</p>
+}
