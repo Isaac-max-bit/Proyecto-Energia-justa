@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
-@Data // Genera automáticamente Getters, Setters, toString, equals y hashCode
-@NoArgsConstructor // Genera constructor vacío (obligatorio para JPA)
-@AllArgsConstructor // Genera constructor con todos los campos
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = "Modelo de usuario para el sistema de gestión de energía")
 public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "ID autoincremental")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -24,17 +24,15 @@ public class UserModel {
     private String email;
 
     @Column(nullable = false)
-    @Schema(description = "Contraseña encriptada del usuario")
+    @Schema(description = "Contraseña encriptada")
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Schema(example = "ADMIN", description = "Roles disponibles: ADMIN, USER, ANALYST")
+    @Schema(example = "ADMIN", description = "Roles: ADMIN, USER, ANALYST")
     private Role role;
-
-    // NOTA: He borrado los métodos manuales get/set porque @Data de Lombok los crea por ti.
-}
 
     /* public enum Role {
         ADMIN, USER, ANALYST
     } */
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Antioquia",
+        "country": {
+            "id": 1,
+            "name": "Colombia"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Caldas",
+        "country": {
+            "id": 2,
+            "name": "Perú"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Caldas",
+        "country": {
+            "id": 1,
+            "name": "Colombia"
+        }
+    }
+]
