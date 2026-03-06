@@ -7,7 +7,7 @@ public class LoginRequest {
     private String email;
     private String password;
 
-    public String getEmail() {
+/*     public String getEmail() {
         return this.email;
     }
 
@@ -21,7 +21,7 @@ public class LoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    } */
 
 
 
