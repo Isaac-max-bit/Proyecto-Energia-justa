@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserComponent } from "./view/user/user.component/user.component";
 import { LoginComponent } from "./view/login/login.component";
 import { CommonModule } from '@angular/common';
 

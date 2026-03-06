@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../../models/user.model'; // Importa tu interfaz
-import { Observable } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class UserService {
-    // Es recomendable definir la URL en una variable
-    private jsonUrl = 'pruebausuario.json'; 
+    private users: User[] = []; 
 
-    constructor (private http: HttpClient){}
+    constructor() { }
 
-    getUsers(): Observable<User[]> {
-        // Ahora el servicio sabe exactamente qué tipo de datos devuelve
-        return this.http.get<User[]>(this.jsonUrl);
+    addUser(user: User): void {
+        this.users.push(user);
+        console.log('Usuario guardado en el servicio:', user);
+    }
+
+    getUsers(): User[] {
+        return this.users;
     }
 }

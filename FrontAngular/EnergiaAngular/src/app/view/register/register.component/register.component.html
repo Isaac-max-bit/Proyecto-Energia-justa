@@ -1,0 +1,47 @@
+<div class="register-page">
+    <div class="register-card">
+        <div class="avatar-header">
+            <div class="avatar-circle">
+                <img src="images/logo-login.jpg" alt="Logo" class="logo-img">
+            </div>
+        </div>
+
+        <div class="header-text">
+            <h2>Create Account</h2>
+        </div>
+
+        <div class="login-tabs">
+            <a routerLink="/login" routerLinkActive="active">Login</a>
+        </div>
+        <form [formGroup]="userForm" (ngSubmit)="onRegister()">
+            <div class="input-group">
+                <label>USERNAME</label>
+                <input type="text" formControlName="username" placeholder="Nombre de usuario">
+            </div>
+
+            <div class="input-group">
+                <label>EMAIL ADDRESS</label>
+                <input type="email" formControlName="email" placeholder="correo@ejemplo.com">
+            </div>
+
+            <div class="input-group">
+                <label>PASSWORD</label>
+                <input type="password" formControlName="password" placeholder="******">
+            </div>
+
+            <div class="input-group">
+                <label>SYSTEM ROLE</label>
+                <select formControlName="role" title="Seleccionar rol">
+                    <option value="usuario">Usuario</option>
+                    <option value="administrador">Administrador</option>
+                </select>
+            </div>
+
+            <button type="submit" [disabled]="userForm.invalid" class="submit-btn">
+                REGISTRARSE
+            </button>
+        </form>
+
+
+    </div>
+</div>
