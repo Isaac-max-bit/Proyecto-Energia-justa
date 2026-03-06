@@ -15,7 +15,7 @@ public class LoginRequest {
         this.email = email;
     }
 
-    public String getPassword() {
+    public CharSequence getPassword() {
         return this.password;
     }
 
