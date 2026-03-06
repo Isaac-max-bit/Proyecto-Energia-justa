@@ -6,6 +6,6 @@ import { CountryComponent } from './view/country/country.component/country.compo
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Al abrir, va al login
   { path: 'login', component: LoginComponent },        // Pantalla de diseño verde
-  { path: 'users', component: UserComponent },       // Pantalla de tarjetas
-  { path: 'country', component: CountryComponent }       // Pantalla de tarjetas
+  { path: 'users', component: UserComponent },
+  { path: 'register', component: UserComponent }       // Pantalla de tarjetas
 ];
