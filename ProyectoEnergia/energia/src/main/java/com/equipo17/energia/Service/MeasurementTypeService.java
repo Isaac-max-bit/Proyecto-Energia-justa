@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 
 import java.util.List;
@@ -37,4 +37,4 @@ public class MeasurementTypeService {
         return measurementTypeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tipo de medida no encontrado"));
     }
-}
+} */

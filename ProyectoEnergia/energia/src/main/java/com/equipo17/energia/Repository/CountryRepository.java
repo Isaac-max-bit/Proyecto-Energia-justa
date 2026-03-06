@@ -1,4 +1,4 @@
-package com.equipo17.energia.Repository;
+/* package com.equipo17.energia.Repository;
 
 import com.equipo17.energia.Model.Country;
 
@@ -13,3 +13,4 @@ public interface CountryRepository extends JpaRepository<Country,Long>{
     // Validar si existe por nombre
     boolean existsByName(String name);
 }
+ */

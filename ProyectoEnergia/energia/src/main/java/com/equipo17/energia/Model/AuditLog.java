@@ -1,4 +1,4 @@
-package com.equipo17.energia.Model;
+/* package com.equipo17.energia.Model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -23,4 +23,4 @@ public class AuditLog {
 
 	public AuditLog() {}
 
-}
+} */

@@ -1,4 +1,4 @@
-package com.equipo17.energia.Repository;
+/* package com.equipo17.energia.Repository;
 
 import com.equipo17.energia.Model.MeasurementType;
 
@@ -12,3 +12,4 @@ public interface MeasurementTypeRepository extends JpaRepository<MeasurementType
 
     boolean existsByName(String name);
 }
+ */

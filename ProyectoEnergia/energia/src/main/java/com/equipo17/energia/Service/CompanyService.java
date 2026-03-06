@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.equipo17.energia.Repository.CountryRepository;
@@ -43,4 +43,4 @@ public class CompanyService {
     public List<Company> findByCountry(Long countryId) {
         return companyRepository.findByCountryId(countryId);
     }
-}
+} */

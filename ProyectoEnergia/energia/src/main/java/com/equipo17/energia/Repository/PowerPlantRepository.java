@@ -1,4 +1,4 @@
-package com.equipo17.energia.Repository;
+/* package com.equipo17.energia.Repository;
 
 import com.equipo17.energia.Model.PowerPlant;
 
@@ -20,3 +20,4 @@ public interface PowerPlantRepository extends JpaRepository<PowerPlant,Long>{
 
     boolean existsByNameAndCompanyId(String name, Long companyId);
 }
+ */

@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Service.EnergyRecordService;
 import com.equipo17.energia.Model.EnergyRecord;
@@ -32,4 +32,4 @@ public class EnergyRecordController {
     public List<EnergyRecord> findByPlant(@PathVariable Long plantId) {
         return energyRecordService.findByPlant(plantId);
     }
-}
+} */

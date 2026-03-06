@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -72,4 +72,4 @@ public class EnergyRecordService {
     public List<EnergyRecord> findByPlant(Long plantId) {
         return energyRecordRepository.findByPowerPlantId(plantId);
     }
-}
+} */

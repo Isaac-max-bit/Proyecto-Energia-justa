@@ -1,4 +1,4 @@
-package com.equipo17.energia.Model;
+/* package com.equipo17.energia.Model;
 
 import java.time.LocalDateTime;
 
@@ -66,3 +66,4 @@ public class User {
     }
 
 }
+ */
