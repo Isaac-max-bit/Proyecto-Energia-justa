@@ -1,35 +1,53 @@
-<div class="card mb-5 shadow-sm">
-    <div class="card-header bg-primary text-white">Registrar Nuevo Usuario</div>
-    <div class="card-body">
-        <form [formGroup]="userForm" (ngSubmit)="addUser()" class="row g-3">
-            <div class="col-md-4">
-                <input type="text" formControlName="username" class="form-control" placeholder="Nombre de usuario">
-            </div>
-            <div class="col-md-4">
-                <input type="email" formControlName="email" class="form-control" placeholder="Correo electrónico">
-            </div>
-            <div class="col-md-2">
-                <select formControlName="role" class="form-select" aria-label="Seleccionar rol del usuario" title="Rol">
-                    <option value="administrador">Administrador</option>
-                    <option value="usuario">Usuario</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" [disabled]="userForm.invalid" class="btn btn-success w-100">Agregar</button>
-            </div>
-        </form>
-    </div>
-</div>
+<div class="register-page">
+    <div class="register-card">
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @for (u of users; track u.id) {
-    <div class="col">
-        <div class="card h-100">
-            <div class="card-footer d-flex gap-2">
-                <button class="btn btn-sm btn-outline-warning w-50">Editar</button>
-                <button (click)="deleteUser(u.id)" class="btn btn-sm btn-outline-danger w-50">Eliminar</button>
+        <div class="avatar-header">
+            <div class="avatar-circle">
+                <img src="/images/logo-login.jpg" alt="Logo Registro" class="logo-img">
             </div>
         </div>
+
+        <div class="login-tabs">
+            <a routerLink="/login" routerLinkActive="active" class="tab">Login</a>
+        </div>
+
+        <div class="header-text">
+            <h2>Nuevo Usuario</h2>
+        </div>
+
+        <form [formGroup]="userForm" (ngSubmit)="onRegister()">
+
+            <div class="input-group">
+                <label for="reg-username">NAME</label>
+                <input type="text" id="reg-username" formControlName="username" title="Nombre de usuario"
+                    placeholder="Ej: JuanP">
+            </div>
+
+            <div class="input-group">
+                <label for="reg-email">EMAIL</label>
+                <input type="email" id="reg-email" formControlName="email" title="Correo electrónico"
+                    placeholder="juan@correo.com">
+            </div>
+
+            
+            <div class="input-group">
+                <label for="reg-password">PASSWORD</label>
+                <input type="password" id="reg-password" formControlName="password" title="Contraseña"
+                    placeholder="Ingresa tu contraseña">
+            </div>
+
+            <div class="input-group">
+                <label for="reg-role">SYSTEM ROLE</label>
+                <select id="reg-role" formControlName="role" title="Seleccionar rol">
+                    <option value="usuario">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="userForm.invalid">
+                REGISTER
+            </button>
+
+        </form>
     </div>
-    }
 </div>

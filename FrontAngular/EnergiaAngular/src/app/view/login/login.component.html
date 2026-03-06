@@ -9,8 +9,7 @@
         </div>
 
         <div class="login-tabs">
-            <span class="tab active">Login</span>
-            <span class="tab">Sign Up</span>
+            <a routerLink="/register" routerLinkActive="active">Sign Up</a>
         </div>
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
