@@ -1,0 +1,129 @@
+
+.login-page {
+    background-color: #078432;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* 2. Tarjeta oscura del Login */
+.login-card {
+    background-color: #282828;
+    /* Gris oscuro */
+    padding: 60px 40px 40px 40px;
+    border-radius: 40px;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.avatar-header {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background-color: #3E3E3E;
+    border-radius: 50%;
+    border: 4px solid #1DB954;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.login-tabs {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #A7A7A7;
+}
+
+.tab.active {
+    color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+    margin-right: 15px;
+}
+
+.input-group {
+    
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: #A7A7A7;
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+
+
+}
+
+.input-title {
+    color: #A7A7A7;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    border: 3px solid #1DB954;
+}
+
+input {
+    width: 100%;
+    background-color: #3E3E3E;
+    border: 2px groove #1DB954;
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    outline: none;
+    
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #1aa34a;
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: #A7A7A7;
+    font-size: 12px;
+    text-decoration: none;
+}
+

@@ -1,50 +1,43 @@
 package com.equipo17.energia.Service;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
+
+//import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+//import org.springframework.web.server.ResponseStatusException;
 
 import com.equipo17.energia.Model.EnergyType;
 import com.equipo17.energia.Repository.EnergyTypeRepository;
+import com.equipo17.energia.exception.ResourceNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class EnergyTypeService {
+
     private final EnergyTypeRepository energyTypeRepository;
 
-    public EnergyTypeService(EnergyTypeRepository energyTypeRepository){
-        this.energyTypeRepository=energyTypeRepository;
-    }
+    public EnergyType save(EnergyType energyType) {
 
-    public EnergyType creaEnergyType(EnergyType energyType){
+        if (energyTypeRepository.existsByName(energyType.getName())) {
+            throw new ResourceNotFoundException("El tipo de energia ya existe");
+        }
+
         return energyTypeRepository.save(energyType);
     }
 
-    public List<EnergyType> findAll(){
+    public List<EnergyType> findAll() {
         return energyTypeRepository.findAll();
     }
 
-    public Optional<EnergyType> findById(Long id){
-        return energyTypeRepository.findById(id);
+    public EnergyType findById(Long id) {
+        return energyTypeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo de energia no encontrado"));
     }
 
-    //asesoria 
-    public EnergyType update(Long id, EnergyType energyTypeDetails){
-        EnergyType energyType=energyTypeRepository.findById(id)
-        .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Tipo de energia no encontrado"));
-
-        if(energyTypeDetails.getName()!=null && energyTypeDetails.getName().trim().isEmpty()){
-            energyType.setName(energyTypeDetails.getName());
-        }
-
-        /* if(energyTypeDetails.isRenewbable()==true){
-            energyType.setRenewbable(true);
-        }else{
-            energyType.setRenewbable(false);
-        } */
-
-        return energyTypeRepository.save(energyType);
+    public List<EnergyType> findByRenewable(Boolean renewable) {
+        return energyTypeRepository.findByRenewable(renewable);
     }
 }

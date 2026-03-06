@@ -25,10 +25,10 @@ public class RegionService {
         Long countryId = region.getCountry().getId();
 
         Country country = countryRepository.findById(countryId)
-                .orElseThrow(() -> new ResourceNotFoundException("Country not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("País no encontrado"));
 
         if (regionRepository.existsByNameAndCountryId(region.getName(), countryId)) {
-            throw new ResourceNotFoundException("Region already exists in this country");
+            throw new ResourceNotFoundException("Esta región ya existe en este país");
         }
 
         region.setCountry(country);
@@ -42,7 +42,7 @@ public class RegionService {
 
     public Region findById(Long id) {
         return regionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Region not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Región no encontrada"));
     }
 
     public List<Region> findByCountry(Long countryId) {
