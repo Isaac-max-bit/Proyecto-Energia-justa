@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(userService.login(request));
     }
 
-    // OBTENER TODO
+    // OBTENER Todo
     @GetMapping
     @Operation(summary = "Obtener lista de todos los usuarios")
     public List<UserModel> getAll() {
