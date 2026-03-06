@@ -18,7 +18,7 @@
         <form [formGroup]="userForm" (ngSubmit)="onRegister()">
 
             <div class="input-group">
-                <label for="reg-username">NOMBRE DE USUARIO</label>
+                <label for="reg-username">NAME</label>
                 <input type="text" id="reg-username" formControlName="username" title="Nombre de usuario"
                     placeholder="Ej: JuanP">
             </div>
@@ -31,13 +31,13 @@
 
             
             <div class="input-group">
-                <label for="reg-password">CONTRASEÑA</label>
+                <label for="reg-password">PASSWORD</label>
                 <input type="password" id="reg-password" formControlName="password" title="Contraseña"
                     placeholder="Ingresa tu contraseña">
             </div>
 
             <div class="input-group">
-                <label for="reg-role">ROL DEL SISTEMA</label>
+                <label for="reg-role">SYSTEM ROLE</label>
                 <select id="reg-role" formControlName="role" title="Seleccionar rol">
                     <option value="usuario">User</option>
                     <option value="admin">Admin</option>
