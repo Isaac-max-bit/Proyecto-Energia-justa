@@ -11,7 +11,7 @@ export class RegionService {
 
     constructor (private http: HttpClient){}
 
-    getRegion(){
+    getRegions(){
         return this.http.get<any[]>('region.json')
     }
 

@@ -14,5 +14,13 @@
             "id": 2,
             "name": "Perú"
         }
+    },
+    {
+        "id": 3,
+        "name": "Caldas",
+        "country": {
+            "id": 1,
+            "name": "Colombia"
+        }
     }
 ]
