@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +32,4 @@ public class CompanyController {
     public List<Company> findByCountry(@PathVariable Long countryId) {
         return companyService.findByCountry(countryId);
     }
-}
+} */

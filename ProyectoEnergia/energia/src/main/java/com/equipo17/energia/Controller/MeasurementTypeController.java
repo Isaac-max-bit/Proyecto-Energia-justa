@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Service.MeasurementTypeService;
 import com.equipo17.energia.Model.MeasurementType;
@@ -27,4 +27,4 @@ public class MeasurementTypeController {
     public MeasurementType findById(@PathVariable Long id) {
         return measurementTypeService.findById(id);
     }
-}
+} */

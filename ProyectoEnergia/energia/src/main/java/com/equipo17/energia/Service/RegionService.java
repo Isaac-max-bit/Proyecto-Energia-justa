@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import java.util.List;
 
@@ -48,4 +48,4 @@ public class RegionService {
     public List<Region> findByCountry(Long countryId) {
         return regionRepository.findByCountryId(countryId);
     }
-}
+} */

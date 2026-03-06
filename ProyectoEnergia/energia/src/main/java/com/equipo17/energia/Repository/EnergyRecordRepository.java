@@ -1,4 +1,4 @@
-package com.equipo17.energia.Repository;
+/* package com.equipo17.energia.Repository;
 
 import com.equipo17.energia.Model.EnergyRecord;
 
@@ -19,3 +19,4 @@ public interface EnergyRecordRepository extends JpaRepository<EnergyRecord,Long>
             Long measurementTypeId
     );
 }
+ */

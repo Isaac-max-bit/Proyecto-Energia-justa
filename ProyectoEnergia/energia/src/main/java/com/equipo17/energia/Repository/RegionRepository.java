@@ -1,4 +1,4 @@
-package com.equipo17.energia.Repository;
+/* package com.equipo17.energia.Repository;
 
 import com.equipo17.energia.Model.Region;
 
@@ -15,3 +15,4 @@ public interface RegionRepository extends JpaRepository<Region,Long>{
 
     boolean existsByNameAndCountryId(String name, Long countryId);
 }
+ */

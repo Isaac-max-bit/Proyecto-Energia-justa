@@ -1,4 +1,4 @@
-package com.equipo17.energia.Model;
+/* package com.equipo17.energia.Model;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -54,4 +54,4 @@ public class MeasurementType {
         this.energyRecords = energyRecords;
     }
 
-}
+} */

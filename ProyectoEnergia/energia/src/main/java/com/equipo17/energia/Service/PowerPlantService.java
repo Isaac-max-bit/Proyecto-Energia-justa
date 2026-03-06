@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -59,4 +59,4 @@ public class PowerPlantService {
     public List<PowerPlant> findByRegion(Long regionId) {
         return powerPlantRepository.findByRegionId(regionId);
     }
-}
+} */

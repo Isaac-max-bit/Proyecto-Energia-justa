@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import java.util.List;
 //import java.util.Optional;
@@ -40,4 +40,4 @@ public class EnergyTypeService {
     public List<EnergyType> findByRenewable(Boolean renewable) {
         return energyTypeRepository.findByRenewable(renewable);
     }
-}
+} */

@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Service.EnergyTypeService;
 import com.equipo17.energia.Model.EnergyType;
@@ -32,4 +32,4 @@ public class EnergyTypeController {
     public List<EnergyType> findByRenewable(@PathVariable Boolean renewable) {
         return energyTypeService.findByRenewable(renewable);
     }
-}
+} */
