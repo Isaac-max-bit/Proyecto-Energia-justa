@@ -25,7 +25,13 @@
     @for (u of users; track u.id) {
     <div class="col">
         <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{u.username}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{u.email}}</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
             <div class="card-footer d-flex gap-2">
+                
                 <button class="btn btn-sm btn-outline-warning w-50">Editar</button>
                 <button (click)="deleteUser(u.id)" class="btn btn-sm btn-outline-danger w-50">Eliminar</button>
             </div>

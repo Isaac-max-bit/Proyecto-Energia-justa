@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service/user.service';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../models/user.model';
+import { ChangeDetectorRef } from '@angular/core';
 // 1. Importamos las herramientas de formularios reactivos
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -17,13 +18,19 @@ export class UserComponent implements OnInit {
     users: User[] = [];
     userForm: FormGroup; // 3. Definimos el grupo del formulario
 
-    constructor(private userSer: UserService) {
+    constructor(private userSer: UserService, private changeP: ChangeDetectorRef) {
         // 4. Creamos el formulario con sus validaciones
         this.userForm = new FormGroup({
             username: new FormControl('', [Validators.required, Validators.minLength(3)]),
             email: new FormControl('', [Validators.required, Validators.email]),
             role: new FormControl('usuario', Validators.required)
+
         });
+        this.userSer.getUsers().subscribe(data =>{
+            this.users = data;
+            console.log(this.users);
+            this.changeP.detectChanges();
+        })
     }
 
     ngOnInit(): void {
