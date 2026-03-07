@@ -10,47 +10,46 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher; // Importante para matchers específicos
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity // Permite el uso de @PreAuthorize en los Controladores
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Encripta la contraseñas
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable()) // Deshabilitado para APIs REST
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // API sin estado
-            .authorizeHttpRequests(auth -> auth
-                
-                // Ruta publica del swuagger
-                .requestMatchers(
-                    "/v3/api-docs/**",
-                    "/swagger-ui/**",
-                    "/swagger-ui.html"
-                ).permitAll()
+        return http
+                // 1. Deshabilitar CSRF (común en APIs Stateless)
+                .csrf(csrf -> csrf.disable())
 
-                //Ruta publica del registro
-                .requestMatchers("/api/auth/**").permitAll()
+                // 2. Configurar gestión de sesiones
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
 
-                // Rutas protegidas x rol
-                // Solo el ADMIN puede gestionar usuarios
-                .requestMatchers("/api/users/**").hasRole("ADMIN")
-                
-                // Los tres roles pueden ver los datos de energía
-                .requestMatchers("/api/energy/**").hasAnyRole("ADMIN", "USER", "ANALYST")
+                // 3. Autorización de rutas
+                .authorizeHttpRequests(auth -> auth
+                        // Permitir Swagger y documentación
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        // Permitir autenticación
+                        .requestMatchers("/api/auth/**").permitAll()
+                        // Roles específicos
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+                        .requestMatchers("/api/energy/**").hasAnyRole("ADMIN", "USER", "ANALYST")
+                        // Cualquier otra requiere autenticación
+                        .anyRequest().authenticated()
+                )
 
-                // Una peticion diferente pide login
-                .anyRequest().authenticated()
-            )
-            .httpBasic(Customizer.withDefaults()); // Habilita la ventanita de login en el navegador/swagger
+                // 4. Autenticación básica (para pruebas en Swagger)
+                .httpBasic(Customizer.withDefaults())
 
-        return http.build();
+                .build();
     }
 }
 

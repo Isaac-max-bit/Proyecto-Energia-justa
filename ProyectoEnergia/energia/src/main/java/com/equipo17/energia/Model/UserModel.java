@@ -32,8 +32,6 @@ public class UserModel {
     @Schema(example = "ADMIN", description = "Roles: ADMIN, USER, ANALYST")
     private Role role;
 
-    
-
     /* public enum Role {
         ADMIN, USER, ANALYST
     } */
