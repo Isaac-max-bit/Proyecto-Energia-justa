@@ -1,12 +1,16 @@
-<h1>LÍNEA DIVISORIA PARA NO PERDER DE VISTA LO IMPORTANTE!</h1>
-
-@for (c of countries; track c.id){
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{c.name}}</h5>
-    <p class="card-text">Texto que especifica que la id es: {{c.id}}</p>
-
-  </div>
+<h2>Countries</h2>
+<div class="input-group input-group-sm mb-3 browser-default">
+    <span class="input-group-text rounded-1" id="inputGroup-sizing-sm">New Country</span>
+    <input type="text" [(ngModel)]="newCountry.name" placeholder="Country name">
 </div>
+
+<button (click)="saveCountry()">Guardar</button>
+
+@for (c of countries; track c.name){
+    <ul>
+    <li>
+    {{c.name}}
+    </li>
+    </ul>
 }
+

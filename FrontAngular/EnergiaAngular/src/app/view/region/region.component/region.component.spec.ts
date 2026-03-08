@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegionListComponent } from './region-list.component';
+import { RegionComponent } from './region.component';
 
-describe('RegionListComponent', () => {
-  let component: RegionListComponent;
-  let fixture: ComponentFixture<RegionListComponent>;
+describe('RegionComponent', () => {
+  let component: RegionComponent;
+  let fixture: ComponentFixture<RegionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegionListComponent]
+      imports: [RegionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegionListComponent);
+    fixture = TestBed.createComponent(RegionComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
