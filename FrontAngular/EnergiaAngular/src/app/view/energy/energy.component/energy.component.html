@@ -1,1 +1,9 @@
-<p>energy.component works!</p>
+<h2>Energy</h2>
+
+<ul>
+    @for(e of energy; track e.id){
+        <li>
+            {{e.region}}
+        </li>      
+    }
+</ul>

@@ -1,5 +1,5 @@
 package com.equipo17.energia;
-
+/*
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,4 +10,4 @@ public class EnergiaApplication {
 		SpringApplication.run(EnergiaApplication.class, args);
 	}
 
-}
+}*/

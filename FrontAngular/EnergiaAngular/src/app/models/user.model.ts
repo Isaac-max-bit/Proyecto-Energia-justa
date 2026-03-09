@@ -7,8 +7,14 @@
     role: string;  
 } */
 
-
-export interface User {
+export class User{
+    id?: number;
+    email?: string;      
+    password?: string;   
+    role?: string;  
+    enabled?:boolean;
+}
+/* export interface User {
     id: number;
     username: string;   
     email: string;      
@@ -16,4 +22,4 @@ export interface User {
     role: string;       
     createdAt: string;  
     updatedAt: string;  
-}
+} */
