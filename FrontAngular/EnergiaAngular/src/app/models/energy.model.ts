@@ -1,5 +1,5 @@
 export interface Energy{
-    id:number;
+    id?:number;
     entity:string;
     code:string;
     dataYear:number;
