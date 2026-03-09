@@ -1,23 +1,35 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Country } from '../../../models/country.model';
 import { CountryService } from '../../../services/country.service/country.service';
-import { ChangeDetectorRef } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-country.component',
-    imports: [CommonModule],
+    imports:[FormsModule],
+    selector: 'app-country',
     templateUrl: './country.component.html',
-    styleUrl: './country.component.css',
+    styleUrl: './country.component.css'
 })
-export class CountryComponent {
-    countries: any[] = [];
+export class CountryComponent implements OnInit{
+    countries: Country[] = [];
+    newCountry: Country = new Country();
 
-    constructor(private countrySer: CountryService, private changeP: ChangeDetectorRef) {
-        countrySer.getCountries().subscribe(data => {
-            this.countries = data;
-            console.log(this.countries);
-            this.changeP.detectChanges();
+    constructor(private countryService : CountryService){}
+
+        ngOnInit(): void {
+        this.loadCountries();
+        }
+
+    loadCountries() {
+        this.countryService.getCountries().subscribe(data => {
+        this.countries = data;
         });
     }
+
+    saveCountry() {
+        this.countryService.createCountry(this.newCountry).subscribe(data => {
+        this.loadCountries();
+        this.newCountry = new Country();
+        });
+    }
+
 }

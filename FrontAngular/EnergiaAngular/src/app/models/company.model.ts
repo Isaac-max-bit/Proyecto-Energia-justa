@@ -1,6 +1,6 @@
 import { Country } from "./country.model";
 
-export class Region {
+export class Company {
     id?: number;
     name!: string;
     country!: Country;

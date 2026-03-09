@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegionCreateComponent } from './region-create.component';
+import { EnergyTypeComponent } from './energy-type.component';
 
-describe('RegionCreateComponent', () => {
-  let component: RegionCreateComponent;
-  let fixture: ComponentFixture<RegionCreateComponent>;
+describe('EnergyTypeComponent', () => {
+  let component: EnergyTypeComponent;
+  let fixture: ComponentFixture<EnergyTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegionCreateComponent]
+      imports: [EnergyTypeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegionCreateComponent);
+    fixture = TestBed.createComponent(EnergyTypeComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

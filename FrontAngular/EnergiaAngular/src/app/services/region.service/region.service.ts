@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Region } from '../../models/region.model';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 export class RegionService {
-    private apiUrl = "apigenerica.api"
+    private apiUrl = "http://localhost:8081/api/region";
 
-    constructor (private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    getRegions(){
-        return this.http.get<any[]>('region.json')
+    getRegions(): Observable<Region[]> {
+        return this.http.get<Region[]>(this.apiUrl);
     }
-
-    createRegion(newRegion: Region): Observable<Region> {
-    return this.http.post<Region>(this.apiUrl, newRegion);
-  }
+    createRegion(region: Region): Observable<Region> {
+        return this.http.post<Region>(this.apiUrl, region);
+    }
 }
