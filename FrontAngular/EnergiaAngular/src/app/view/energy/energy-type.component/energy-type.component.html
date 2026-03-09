@@ -1,1 +1,46 @@
-<p>energy-type.component works!</p>
+<h2 class="bg-success p-3 text-light text-center">ENERGY TYPES</h2>
+
+<div class="row m-1">
+    <div class="col s4">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title">Energy Type Creation</h5>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text bg-success">New Energy Type</span>
+                        <input type="text" class="form-control" [(ngModel)]="newEnergyType.name" placeholder="Energy Type name">
+                    </div>
+
+                    <h5 class="card-title">Country Selector</h5>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text bg-success">Renewability</span>
+                        <select class="form-select" [(ngModel)]="newEnergyType.renewable">
+                            <option [ngValue]="true">Renewable</option>
+                            <option [ngValue]="false">Non-Renewable</option>
+                        </select>
+                    </div>
+                <button (click)="saveEnergyType()" class="btn btn-outline-success">Create energy type</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s8 mt-2">
+        <table class="table table-striped " style="width: 35rem;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Renewable</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (e of EnergyTypes; track e.name){
+                <tr>
+                    <td>{{e.id}}</td>
+                    <td>{{e.name}}</td>
+                    <td>{{e.renewable}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

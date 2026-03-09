@@ -1,2 +1,5 @@
-export class EnergyTypeModel {
+export class EnergyType {
+    id?: number;
+    name!: string;
+    renewable!: boolean;
 }
