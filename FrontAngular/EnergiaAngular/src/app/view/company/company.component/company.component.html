@@ -1,19 +1,19 @@
-<h2 class="bg-success p-3 text-light text-center">REGIONS</h2>
+<h2 class="bg-success p-3 text-light text-center">COMPANIES</h2>
 
-<div class="row">
+<div class="row m-1">
     <div class="col s4">
         <div class="card" style="width: 35rem;">
             <div class="card-body">
-                <h5 class="card-title">Region Creator</h5>
+                <h5 class="card-title">Company Creator</h5>
                     <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text bg-success">New Region</span>
-                        <input type="text" class="form-control" [(ngModel)]="newRegion.name" placeholder="Region name">
+                        <span class="input-group-text bg-success">New Company</span>
+                        <input type="text" class="form-control" [(ngModel)]="newCompany.name" placeholder="Company name">
                     </div>
 
                     <h5 class="card-title">Country Selector</h5>
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text bg-success">Country Selector</span>
-                        <select [(ngModel)]="newRegion.country" class="form-select form-select-sm" aria-label="Small select example">
+                        <select [(ngModel)]="newCompany.country" class="form-select form-select-sm">
                             <option [ngValue]="undefined" disabled selected>Select a country</option>
                             @for(c of countries; track $index){
                             <option [ngValue]="c">
@@ -22,7 +22,7 @@
                             }
                         </select>
                     </div>
-                <button (click)="saveRegion()" class="btn btn-outline-success">Create region</button>
+                <button (click)="saveCompany()" class="btn btn-outline-success">Create company</button>
             </div>
         </div>
     </div>
