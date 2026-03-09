@@ -1,10 +1,15 @@
-<h2>Countries</h2>
-<div class="input-group input-group-sm mb-3 browser-default">
-    <span class="input-group-text rounded-1" id="inputGroup-sizing-sm">New Country</span>
-    <input type="text" [(ngModel)]="newCountry.name" placeholder="Country name">
-</div>
+<h2 class="bg-success p-3 text-light">Countries</h2>
 
-<button (click)="saveCountry()">Guardar</button>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h5 class="card-title">Country Creation</h5>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text bg-success">New Country</span>
+                <input type="text" class="form-control" [(ngModel)]="newCountry.name" placeholder="Country name">
+            </div>
+        <button (click)="saveCountry()" class="btn btn-outline-success">Create country</button>
+    </div>
+</div>
 
 @for (c of countries; track c.name){
     <ul>
