@@ -15,7 +15,7 @@ export class CountryComponent implements OnInit{
 
     constructor(private countryService : CountryService){}
 
-        ngOnInit(): void {
+    ngOnInit(): void {
         this.loadCountries();
         }
 
