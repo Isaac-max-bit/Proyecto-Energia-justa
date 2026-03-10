@@ -9,18 +9,29 @@
         </div>
 
         <div class="login-tabs">
-            <a routerLink="/register" routerLinkActive="active">Sign Up</a>
+            <a routerLink="/register">Sign Up</a>
         </div>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            
             <div class="input-group">
                 <label for="email">EMAIL</label>
                 <input type="email" id="email" formControlName="email" placeholder="Introduce tu email">
+                
+                <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="error-message">
+                    <span *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</span>
+                    <span *ngIf="loginForm.get('email')?.errors?.['email']">Formato de correo no válido.</span>
+                </div>
             </div>
 
             <div class="input-group">
                 <label for="password">PASSWORD</label>
                 <input type="password" id="password" formControlName="password" placeholder="••••••••">
+                
+                <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+                    <span *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</span>
+                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+                </div>
             </div>
 
             <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">

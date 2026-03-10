@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/energy")
-@CrossOrigin(origins = "*") // Pa que el Frontend no sea bloqueado por seguridad
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true") // Pa que el Frontend no sea bloqueado por seguridad
 public class EnergyController {
 
     @Autowired
@@ -28,10 +28,11 @@ public class EnergyController {
     public ResponseEntity<EnergyModel> getEnergyById(@PathVariable Long id) {
         Optional<EnergyModel> data = energyRepository.findById(id);
         return data.map(ResponseEntity::ok)
-                   .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /*Producción total de energía renovable por tipo.
+    /*
+     * Producción total de energía renovable por tipo.
      * Esto le sirve al Front para hacer una gráficas DE TORTA
      */
     @GetMapping("/global-stats/{year}")
@@ -39,7 +40,8 @@ public class EnergyController {
         return energyRepository.findGlobalProductionByYear(year);
     }
 
-    /**Top 10 países con mayor producción eólica.
+    /**
+     * Top 10 países con mayor producción eólica.
      * Esto le sirve al Front para hacer una gráfica de Barras.
      */
     @GetMapping("/top-wind/{year}")
@@ -48,7 +50,7 @@ public class EnergyController {
     }
 
     /**
-     Tendencia histórica de capacidad solar.
+     * Tendencia histórica de capacidad solar.
      * Esto le sirve al Front para hacer una gráfica de Líneas
      */
     @GetMapping("/solar-trend/{country}")
@@ -59,9 +61,9 @@ public class EnergyController {
     // Busca por País y Año exacto
     @GetMapping("/search")
     public ResponseEntity<EnergyModel> getByCountryAndYear(
-            @RequestParam String entity, 
+            @RequestParam String entity,
             @RequestParam Integer year) {
-        
+
         return energyRepository.findByEntityAndDataYear(entity, year)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

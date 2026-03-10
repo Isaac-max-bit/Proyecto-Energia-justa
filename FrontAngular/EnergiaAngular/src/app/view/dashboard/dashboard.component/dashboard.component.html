@@ -1,1 +1,26 @@
-<p>dashboard.component works!</p>
+<div class="table-container">
+    <h1>Energy</h1>
+
+    <table class="energy-table">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Año</th>
+                <th>Tipo de energia</th>
+                <th>Produccion</th>
+                <th>Consumo</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listaEnergia">
+                <td>{{ item.region }}</td>
+                <td>{{ item.yearData }}</td>
+                <td>{{ item.energyType }}</td>
+                <td>{{ item.production }}</td>
+                <td>{{ item.consumption }}</td>
+                <td>{{ item.capacity }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

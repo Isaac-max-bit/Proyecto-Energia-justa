@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Energy } from '../../models/energy.model';
 
@@ -7,12 +7,25 @@ import { Energy } from '../../models/energy.model';
   providedIn: 'root',
 })
 export class EnergyService {
-  private apiUrl="http://localhost:8081/api/energy/all";
+  private apiUrl = "http://localhost:8080/api/energy";
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
   getEnergy(): Observable<Energy[]> {
-    return this.http.get<Energy[]>(this.apiUrl);
+    // 1. Preparamos las credenciales que me diste
+    const user = 'admin@energy.com';
+    const pass = 'Admin';
+    
+    
+// Prueba escribirlo manualmente para descartar caracteres invisibles
+const authHeader = 'Basic ' + btoa('admin@energy.com:Admin');
+
+    // 3. Creamos las cabeceras de la petición
+    const headers = new HttpHeaders({
+      'Authorization': authHeader
+    });
+
+    // 4. Enviamos la petición con la llave incluida
+    return this.http.get<Energy[]>(this.apiUrl, { headers });
   }
-  
 }

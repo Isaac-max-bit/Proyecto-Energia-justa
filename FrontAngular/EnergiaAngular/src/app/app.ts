@@ -1,17 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from "./view/login/login.component";
+import { Component } from '@angular/core';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule], // Importante para que router-outlet funcione
-  templateUrl: './app.html', // CORRECCIÓN: Quitamos '.component' del nombre
-  styleUrl: './app.css',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './app.html', 
+  styleUrls: ['./app.css']
 })
-export class AppComponent { // Asegúrate de que se llame AppComponent, no 'App'
-  title = 'EnergiaAngular';
-}
+export class AppComponent {
+  showNavbar: boolean = false;
 
+  constructor(private router: Router) {
+    // Escucha cambios de ruta para ocultar el Navbar en Login/Register
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      const hideRoutes = ['/login', '/register', '/'];
+      // Verifica si la ruta actual está en la lista de rutas a ocultar
+      this.showNavbar = !hideRoutes.includes(event.urlAfterRedirects);
+    });
+  }
+}

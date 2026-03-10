@@ -1,34 +1,42 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+<nav *ngIf="showNavbar" class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" routerLink="/home">Energía Justa</a>
+        
+        <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarNavDropdown" 
+                aria-controls="navbarNavDropdown" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Individual Tables
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/country">Countries</a></li>
-                <li><a class="dropdown-item" href="/region">Regions</a></li>
-                <li><a class="dropdown-item" href="/company">Companies</a></li>
-                <li><a class="dropdown-item" href="/power-plant">Power Plant</a></li>
-                <li><a class="dropdown-item" href="/energy-type">Energy Type</a></li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Individual Tables
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/country">Countries</a></li>
+                        <li><a class="dropdown-item" routerLink="/region">Regions</a></li>
+                        <li><a class="dropdown-item" routerLink="/company">Companies</a></li>
+                        <li><a class="dropdown-item" routerLink="/power-plant">Power Plant</a></li>
+                        <li><a class="dropdown-item" routerLink="/energy-type">Energy Type</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" routerLink="/login">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
             </ul>
-            </li>
-        </ul>
         </div>
     </div>
 </nav>
 
-<div>
+<div [class.container]="showNavbar" [class.mt-4]="showNavbar">
     <router-outlet></router-outlet>
 </div>

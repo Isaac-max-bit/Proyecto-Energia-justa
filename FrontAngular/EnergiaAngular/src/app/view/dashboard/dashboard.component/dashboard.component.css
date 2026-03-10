@@ -1,0 +1,34 @@
+.table-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.energy-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Esto hace que las líneas sean finas */
+    font-size: 13px;
+}
+
+.energy-table th,
+.energy-table td {
+    border: 1px solid #999;
+    /* El color gris de las líneas */
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.energy-table th {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+/* Zebra stripes opcional para que se parezca más a una hoja de cálculo */
+.energy-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

@@ -18,10 +18,15 @@
                 <label>USERNAME</label>
                 <input type="text" formControlName="username" placeholder="Nombre de usuario">
             </div>
-
             <div class="input-group">
-                <label>EMAIL ADDRESS</label>
-                <input type="email" formControlName="email" placeholder="correo@ejemplo.com">
+                <label>EMAIL</label>
+                <input type="email" formControlName="email" placeholder="Introduce tu email">
+
+                <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)"
+                    class="error-message">
+                    <span *ngIf="userForm.get('email')?.errors?.['required']">El correo es obligatorio.</span>
+                    <span *ngIf="userForm.get('email')?.errors?.['email']">Introduce un formato de correo válido.</span>
+                </div>
             </div>
 
             <div class="input-group">
@@ -32,13 +37,13 @@
             <div class="input-group">
                 <label>SYSTEM ROLE</label>
                 <select formControlName="role" title="Seleccionar rol">
-                    <option value="usuario">Usuario</option>
-                    <option value="administrador">Administrador</option>
+                    <option value="usuario">User</option>
+                    <option value="administrador">Admin</option>
                 </select>
             </div>
 
             <button type="submit" [disabled]="userForm.invalid" class="submit-btn">
-                REGISTRARSE
+                REGISTER
             </button>
         </form>
 

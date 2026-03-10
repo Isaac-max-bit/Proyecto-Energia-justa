@@ -136,6 +136,28 @@ input {
     text-decoration: none;
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+    position: relative;
+}
+
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 12px;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+    font-weight: bold;
+    text-align: left;
+    order: 3; 
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid #ff4d4d !important;
+}
+
 
 @media (max-width: 768px) {
 

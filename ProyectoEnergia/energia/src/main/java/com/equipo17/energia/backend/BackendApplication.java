@@ -1,4 +1,4 @@
-package com.equipo17.energia.backend;
+/*package com.equipo17.energia.backend;
 
 import com.equipo17.energia.Service.EnergyService;
 import org.springframework.boot.CommandLineRunner;
@@ -40,4 +40,4 @@ public class BackendApplication {
             }
         };
     }
-}
+}*/
