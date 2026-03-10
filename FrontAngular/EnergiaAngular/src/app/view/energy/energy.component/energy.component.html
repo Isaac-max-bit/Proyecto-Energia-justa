@@ -1,9 +1,11 @@
-<h2>Energy</h2>
+<h2>Energy Production Data</h2>
 
 <ul>
-    @for(e of energy; track e.id){
+    @for(e of energy; track e.code){
         <li>
-            {{e.region}}
+            <strong>Entity:</strong> {{ e.entity }} | 
+            <strong>Year:</strong> {{ e.year }} |
+            <strong>Code:</strong> {{ e.code }}
         </li>      
     }
 </ul>
