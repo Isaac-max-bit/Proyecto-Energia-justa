@@ -11,16 +11,37 @@ import java.util.Optional;
 @Repository
 public interface EnergyRepository extends JpaRepository<EnergyModel, Long> {
 
-    // Cambie 'findByEntityAndDataYear' por este para que no de error de nombres
-    Optional<EnergyModel> findByEntityAndDataYear(String entity, Integer dataYear);
+    @Query("SELECT e.entity, e.solarTwh, e.windTwh, e.hydroTwh, e.otherRenewablesTwh " +
+           "FROM EnergyModel e WHERE e.dataYear = :year " +
+           "AND (e.code IS NULL OR e.code = '' OR LENGTH(e.code) > 3) " + 
+           "AND e.entity NOT IN ('World', 'High-income countries', 'Low-income countries', 'Upper-middle-income countries', 'Lower-middle-income countries')")
+    List<Object[]> findProductionBySourceAndYear(@Param("year") int year);
 
-    // Los Querys manuales usan los nombres de las variables de tu clase
-   /*  @Query("SELECT SUM(e.hydroTwh), SUM(e.solarTwh), SUM(e.windTwh) FROM EnergyModel e WHERE e.dataYear = :year")
-    List<Object[]> findGlobalProductionByYear(@Param("year") Integer year);
+    @Query(value = "SELECT entity, windTwh FROM EnergyModel " +
+                   "WHERE dataYear = :year AND LENGTH(code) = 3 " +
+                   "AND windTwh IS NOT NULL " +
+                   "ORDER BY windTwh DESC LIMIT 10", nativeQuery = true)
+    List<Object[]> findTop10WindByYear(@Param("year") int year);
 
-    @Query("SELECT e.entity, e.windTwh FROM EnergyModel e WHERE e.dataYear = :year AND e.code IS NOT NULL ORDER BY e.windTwh DESC")
-    List<Object[]> findTop10WindProduction(@Param("year") Integer year);
+    // #5. Fuentes de energía y su participación en el consumo eléctrico total a nivel global.
+    @Query("SELECT SUM(e.solarTwh), SUM(e.windTwh), SUM(e.hydroTwh), SUM(e.otherRenewablesTwh) " +
+           "FROM EnergyModel e WHERE e.dataYear = :year AND LENGTH(e.code) = 3")
+    List<Object[]> findGlobalParticipationByYear(@Param("year") int year);
 
-    @Query("SELECT e.dataYear, e.solarCapacityGw FROM EnergyModel e WHERE e.entity = :country ORDER BY e.dataYear ASC")
-    List<Object[]> findSolarCapacityTrend(@Param("country") String country); */
+   /*  @Query("SELECT e.entity, e.solar_twh, e.wind_twh, e.hydro_twh, e.other_renewables_twh " +
+           "FROM energy_data e WHERE e.data_year = :year " +
+           "AND (e.code IS NULL OR e.code = '' OR LENGTH(e.code) > 3) " + 
+           "AND e.entity NOT IN ('World', 'High-income countries', 'Low-income countries', 'Upper-middle-income countries', 'Lower-middle-income countries')")
+    List<Object[]> findProductionBySourceAndYear(@Param("year") int year);
+
+    @Query(value = "SELECT entity, wind_twh FROM energy_data " +
+                   "WHERE data_year = :year AND LENGTH(code) = 3 " +
+                   "AND wind_twh IS NOT NULL " +
+                   "ORDER BY wind_twh DESC LIMIT 10", nativeQuery = true)
+    List<Object[]> findTop10WindByYear(@Param("year") int year);
+
+    @Query("SELECT SUM(e.solar_twh), SUM(e.wind_twh), SUM(e.hydro_twh), SUM(e.other_renewables_twh) " +
+           "FROM energy_data e WHERE e.data_year = :year AND LENGTH(e.code) = 3")
+    List<Object[]> findGlobalParticipationByYear(@Param("year") int year); */
+   
 }

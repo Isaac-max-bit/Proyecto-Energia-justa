@@ -2,6 +2,10 @@ package com.equipo17.energia.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -24,6 +28,18 @@ public class EnergyPorcentajeService {
 
      System.out.println("Carga finalizada");
 
+    }
+
+    public List<Map<String, Object>> getPercentage(int year) {
+        List<Object[]> data = repositoryPorcentaje.findRenewablePercentageByYear(year);
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Object[] row : data) {
+            Map<String, Object> map = new LinkedHashMap<>();
+            map.put("region", row[0]);
+            map.put("porcentaje_renovable", row[1]);
+            result.add(map);
+        }
+        return result;
     }
 
      private void cargarArchivoPorcentaje(String nombreArchivo) {

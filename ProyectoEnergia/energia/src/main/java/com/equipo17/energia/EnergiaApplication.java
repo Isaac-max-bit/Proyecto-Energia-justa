@@ -28,9 +28,10 @@ public class EnergiaApplication {
                 String fileCap = "13-installed-solar-PV-capacity.csv";
                 
                 // Llamamos al servicio para procesar los archivos
-                energyService.cargarTodo(fileProd);
-               // energyPorcentajeService.cargarTodo(fileShare);
-               // energyCapacityService.cargarTodo(fileCap);
+                //comantado para que no se cargue la base de datos
+                /* energyService.cargarTodo(fileProd);
+                energyPorcentajeService.cargarTodo(fileShare);
+                energyCapacityService.cargarTodo(fileCap); */
                 
                 System.out.println("--- ¡Carga de datos finalizada con éxito! ---");
             } catch (Exception e) {

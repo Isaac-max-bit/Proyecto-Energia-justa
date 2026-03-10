@@ -14,7 +14,7 @@ export interface Energy {
     id?: number;         // Agregado para el track del @for
     entity: string;
     region?: string;     // Agregado si lo necesitas específicamente como 'region'
-    code: string;
+    code?: string;
     year: number;
     windProduction: number;
     solarProduction: number;
