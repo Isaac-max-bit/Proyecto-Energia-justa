@@ -2,11 +2,16 @@ package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Model.EnergyModel;
 import com.equipo17.energia.Repository.EnergyRepository;
+import com.equipo17.energia.Service.EnergyService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +21,8 @@ public class EnergyController {
 
     @Autowired
     private EnergyRepository energyRepository;
+    @Autowired
+    private EnergyService energyService;
 
     // Obtene absolutamente todo
     @GetMapping("/all")
@@ -23,13 +30,39 @@ public class EnergyController {
         return energyRepository.findAll();
     }
 
-    // Busca por ID específico
+    @Operation(
+        summary = "Consulta #1: Producción renovable por fuente", 
+        description = "Retorna: region, solar_twh, wind_twh, hydro_twh, other_renewables_twh"
+    )
+    @GetMapping("/produccion")
+    public List<Map<String, Object>> getProduction(@RequestParam int year) {
+        return energyService.getProduction(year);
+    }
+
+    @Operation(
+        summary = "Consulta #4: Top 10 países energía eólica", 
+        description = "Retorna: pais, produccion_eolica_twh"
+    )
+    @GetMapping("/top-eolica")
+    public List<Map<String, Object>> getTop10Wind(@RequestParam int year) {
+        return energyService.getTop10Wind(year);
+    }
+
+    @Operation(
+        summary = "Consulta #5: Participación global por fuentes", 
+        description = "Retorna un solo objeto con los totales mundiales de Solar, Eólica e Hidro"
+    )
+    @GetMapping("/global-participacion")
+    public Map<String, Object> getGlobalParticipation(@RequestParam int year) {
+        return energyService.getGlobalParticipation(year);
+    }
+    /* // Busca por ID específico
     @GetMapping("/{id}")
     public ResponseEntity<EnergyModel> getEnergyById(@PathVariable Long id) {
         Optional<EnergyModel> data = energyRepository.findById(id);
         return data.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+    } */
 
     /*
      * Producción total de energía renovable por tipo.
@@ -59,7 +92,7 @@ public class EnergyController {
     } */
 
     // Busca por País y Año exacto
-    @GetMapping("/search")
+    /* @GetMapping("/search")
     public ResponseEntity<EnergyModel> getByCountryAndYear(
             @RequestParam String entity,
             @RequestParam Integer year) {
@@ -67,5 +100,5 @@ public class EnergyController {
         return energyRepository.findByEntityAndDataYear(entity, year)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+    } */
 }

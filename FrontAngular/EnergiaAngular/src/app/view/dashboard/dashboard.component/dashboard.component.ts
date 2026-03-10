@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { Chart } from 'chart.js/auto'; 
 import { ViewChild, ElementRef } from '@angular/core'; 
+import { CapacityService } from '../../../services/capacity.service/capacity.service';
+import { Capacity } from '../../../models/capacity.model';
 
 
 @Component({
@@ -21,12 +23,23 @@ export class DashboardComponent implements OnInit {
 
   listaCompleta: Energy[] = [];
   listaFiltrada: Energy[] = [];
+  capacityLista: Capacity[]=[];
   filtro: string = '';
 
-  constructor(private energyService: EnergyService) {}
+  constructor(private energyService: EnergyService, private capacityService: CapacityService) {}
 
   ngOnInit(): void {
     this.obtenerDatos();
+    this.obtenerCapacity();
+  }
+
+  obtenerCapacity() {
+    this.capacityService.getCapacity().subscribe({
+      next: (data) => {
+        this.capacityLista = data;
+        console.log(data);
+      }
+    });
   }
 
   obtenerDatos() {
