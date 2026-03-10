@@ -10,22 +10,24 @@ import { Router, RouterModule } from '@angular/router';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent implements OnInit {
-    loginForm!: FormGroup;
+    loginForm: FormGroup;
 
-    constructor(private router: Router) { }
-
-    ngOnInit(): void {
+    constructor(private router: Router) {
         this.loginForm = new FormGroup({
             email: new FormControl('', [Validators.required, Validators.email]),
             password: new FormControl('', [Validators.required, Validators.minLength(6)])
         });
     }
 
-    onSubmit(): void {
+    ngOnInit(): void { }
+
+    onLogin(): void {
         if (this.loginForm.valid) {
-            this.router.navigate(['/dashboard']);
+            console.log('Login exitoso');
+            this.router.navigate(['/home']); // Esta línea hace la magia
+        } else {
+            this.loginForm.markAllAsTouched();
         }
     }
 }

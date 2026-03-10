@@ -1,1 +1,11 @@
-<p>energy.component works!</p>
+<h2>Energy Production Data</h2>
+
+<ul>
+    @for(e of energy; track e.code){
+        <li>
+            <strong>Entity:</strong> {{ e.entity }} | 
+            <strong>Year:</strong> {{ e.year }} |
+            <strong>Code:</strong> {{ e.code }}
+        </li>      
+    }
+</ul>

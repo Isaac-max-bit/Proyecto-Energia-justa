@@ -124,6 +124,20 @@ select {
     font-weight: bold;
 }
 
+.error-message {
+    color: #ff4d4d; /* Un rojo que resalte sobre el fondo oscuro */
+    font-size: 0.75rem;
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+/* Opcional: poner el borde del input en rojo si falla */
+input.ng-invalid.ng-touched {
+    border: 1px solid #ff4d4d !important;
+}
+
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
     .register-card {

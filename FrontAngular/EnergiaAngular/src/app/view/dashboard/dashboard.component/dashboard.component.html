@@ -1,1 +1,66 @@
-<p>dashboard.component works!</p>
+<div class="dashboard-container">
+
+    <header class="header-section">
+        <h1>🌱 Energía Renovable Global</h1>
+
+        <div class="search-box">
+            <input type="text" [(ngModel)]="filtro" (input)="filtrarDatos()"
+                placeholder="🔍 Buscar país o código (AFG, ESP...)">
+        </div>
+    </header>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Registros Totales</h3>
+            <p>{{ listaFiltrada.length | number }}</p>
+        </div>
+
+        <div class="stat-card hydro">
+            <h3>Hidroeléctrica Promedio (TWh)</h3>
+            <p>{{ calcularPromedio('hydroProduction') }}</p>
+        </div>
+
+        <div class="stat-card solar">
+            <h3>Solar Promedio (TWh)</h3>
+            <p>{{ calcularPromedio('solarProduction') }}</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>País / Entidad</th>
+                    <th>Año</th>
+                    <th class="text-right">Viento (TWh)</th>
+                    <th class="text-right">Hidro (TWh)</th>
+                    <th class="text-right">Solar (TWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listaFiltrada">
+                    <td class="bold">{{ item.entity }}</td>
+                    <td>{{ item.year }}</td>
+
+                    <td class="text-right">{{ item.windProduction || 0 | number:'1.2-2' }}</td>
+                    <td class="text-right text-success">{{ item.hydroProduction || 0 | number:'1.2-2' }}</td>
+                    <td class="text-right">{{ item.solarProduction || 0 | number:'1.2-2' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="listaFiltrada.length === 0" style="text-align: center; padding: 3rem;">
+        <p>❌ No se encontraron resultados para "{{ filtro }}"</p>
+    </div>
+    <div class="dashboard-container">
+        <div class="chart-container">
+            <h3>📊 Comparativa de Producción (Top 10 resultados)</h3>
+            <div class="canvas-wrapper">
+                <canvas #miGrafica></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</div>

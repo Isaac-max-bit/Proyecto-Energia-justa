@@ -1,9 +1,35 @@
-import { Routes } from '@angular/router';
-import { LoginComponent } from '../../login/login.component';
-import { RegisterComponent } from '../../register/register.component/register.component';
+import { Component,OnInit } from '@angular/core';
+import { User } from '../../../models/user.model';
+import { UserService } from '../../../services/user.service/user.service';
 
-export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' }
-];
+@Component({
+  selector: 'app-user.component',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css',
+})
+export class UserComponent implements OnInit{
+
+  users: User[]=[];
+  
+  newUser: User =new User();
+
+  constructor(private userService: UserService){}
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.userService.getUsers2().subscribe(data => {
+      this.users=data;
+    });
+  }
+  
+  /* saveUser() {
+    this.userService.addUser(this.newUser).subscribe(data => {
+      this.loadUsers();
+      this.newUser = new User();
+    });
+  } */
+
+}

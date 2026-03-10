@@ -32,13 +32,6 @@ public class EnergyModel {
     @Column(name = "other_renewables_twh")
     private Double otherRenewablesTwh;
 
-    @Column(name = "renewables_share_percent")
-    private Double renewablesSharePercent;
-
-    // --- Datos de Mediciones/Capacidad -2Do cvs ---
-    @Column(name = "solar_capacity_gw")
-    private Double solarCapacityGw;
-
     // Constructor vacío obligatorio para JPA
     public EnergyModel() {
     }
@@ -106,21 +99,5 @@ public class EnergyModel {
 
     public void setOtherRenewablesTwh(Double otherRenewablesTwh) {
         this.otherRenewablesTwh = otherRenewablesTwh;
-    }
-
-    public Double getRenewablesSharePercent() {
-        return renewablesSharePercent;
-    }
-
-    public void setRenewablesSharePercent(Double renewablesSharePercent) {
-        this.renewablesSharePercent = renewablesSharePercent;
-    }
-
-    public Double getSolarCapacityGw() {
-        return solarCapacityGw;
-    }
-
-    public void setSolarCapacityGw(Double solarCapacityGw) {
-        this.solarCapacityGw = solarCapacityGw;
     }
 }
