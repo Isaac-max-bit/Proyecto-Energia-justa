@@ -31,14 +31,44 @@ export class EnergyService {
 
   //TODO
   getProduccion(){
+    const user = 'admin@energy.com';
+    const pass = 'Admin';
+    const authHeader = 'Basic ' + btoa(`${user}:${pass}`);
 
+    const headers = new HttpHeaders({
+      'Authorization': authHeader,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<Energy[]>(this.prodUrl, { headers });
   }
 
   getTopEeolica(){
+        const user = 'admin@energy.com';
+    const pass = 'Admin';
+    const authHeader = 'Basic ' + btoa(`${user}:${pass}`);
+
+    const headers = new HttpHeaders({
+      'Authorization': authHeader,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<Energy[]>(this.eolicaUrl, { headers });
 
   }
 
   getParticipacion(){
+
+        const user = 'admin@energy.com';
+    const pass = 'Admin';
+    const authHeader = 'Basic ' + btoa(`${user}:${pass}`);
+
+    const headers = new HttpHeaders({
+      'Authorization': authHeader,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<Energy[]>(this.partUrl, { headers });
 
   }
 }
