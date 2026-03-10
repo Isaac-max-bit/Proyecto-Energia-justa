@@ -1,4 +1,6 @@
 package com.equipo17.energia;
+import com.equipo17.energia.Service.EnergyCapacityService;
+import com.equipo17.energia.Service.EnergyPorcentajeService;
 import com.equipo17.energia.Service.EnergyService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,18 +17,20 @@ public class EnergiaApplication {
     }
 
     @Bean
-    CommandLineRunner init(EnergyService energyService) {
+    CommandLineRunner init(EnergyService energyService,EnergyPorcentajeService energyPorcentajeService, EnergyCapacityService energyCapacityService ) {
         return args -> {
             try {
                 System.out.println("--- Iniciando proceso de carga de datos ---");
                 
                 // Nombres exactos de tus archivos en src/main/resources
-                String fileProd = "03 modern-renewable-prod.csv";
-                String fileShare = "04 share-electricity-renewables.csv"; 
-                String fileCap = "13 installed-solar-PV-capacity.csv";
+                String fileProd = "03-modern-renewable-prod.csv";
+                String fileShare = "04-share-electricity-renewables.csv"; 
+                String fileCap = "13-installed-solar-PV-capacity.csv";
                 
                 // Llamamos al servicio para procesar los archivos
-                energyService.cargarTodo(fileProd, fileShare, fileCap);
+                energyService.cargarTodo(fileProd);
+               // energyPorcentajeService.cargarTodo(fileShare);
+               // energyCapacityService.cargarTodo(fileCap);
                 
                 System.out.println("--- ¡Carga de datos finalizada con éxito! ---");
             } catch (Exception e) {

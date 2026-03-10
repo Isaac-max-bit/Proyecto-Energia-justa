@@ -35,28 +35,28 @@ public class EnergyController {
      * Producción total de energía renovable por tipo.
      * Esto le sirve al Front para hacer una gráficas DE TORTA
      */
-    @GetMapping("/global-stats/{year}")
+   /*  @GetMapping("/global-stats/{year}")
     public List<Object[]> getGlobalStats(@PathVariable Integer year) {
         return energyRepository.findGlobalProductionByYear(year);
-    }
+    } */
 
     /**
      * Top 10 países con mayor producción eólica.
      * Esto le sirve al Front para hacer una gráfica de Barras.
      */
-    @GetMapping("/top-wind/{year}")
+ /*    @GetMapping("/top-wind/{year}")
     public List<Object[]> getTopWind(@PathVariable Integer year) {
         return energyRepository.findTop10WindProduction(year);
-    }
+    } */
 
     /**
      * Tendencia histórica de capacidad solar.
      * Esto le sirve al Front para hacer una gráfica de Líneas
      */
-    @GetMapping("/solar-trend/{country}")
+ /*    @GetMapping("/solar-trend/{country}")
     public List<Object[]> getSolarTrend(@PathVariable String country) {
         return energyRepository.findSolarCapacityTrend(country);
-    }
+    } */
 
     // Busca por País y Año exacto
     @GetMapping("/search")

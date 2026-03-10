@@ -15,12 +15,12 @@ public interface EnergyRepository extends JpaRepository<EnergyModel, Long> {
     Optional<EnergyModel> findByEntityAndDataYear(String entity, Integer dataYear);
 
     // Los Querys manuales usan los nombres de las variables de tu clase
-    @Query("SELECT SUM(e.hydroTwh), SUM(e.solarTwh), SUM(e.windTwh) FROM EnergyModel e WHERE e.dataYear = :year")
+   /*  @Query("SELECT SUM(e.hydroTwh), SUM(e.solarTwh), SUM(e.windTwh) FROM EnergyModel e WHERE e.dataYear = :year")
     List<Object[]> findGlobalProductionByYear(@Param("year") Integer year);
 
     @Query("SELECT e.entity, e.windTwh FROM EnergyModel e WHERE e.dataYear = :year AND e.code IS NOT NULL ORDER BY e.windTwh DESC")
     List<Object[]> findTop10WindProduction(@Param("year") Integer year);
 
     @Query("SELECT e.dataYear, e.solarCapacityGw FROM EnergyModel e WHERE e.entity = :country ORDER BY e.dataYear ASC")
-    List<Object[]> findSolarCapacityTrend(@Param("country") String country);
+    List<Object[]> findSolarCapacityTrend(@Param("country") String country); */
 }
