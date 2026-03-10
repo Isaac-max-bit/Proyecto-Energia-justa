@@ -30,18 +30,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // 1. Deshabilitar CSRF para APIs
+            //  Deshabilitar CSRF para APIs
             .csrf(csrf -> csrf.disable())
             
-            // 2. Activar CORS con la configuración que definimos abajo
+            //  Activar CORS con la configuración que definimos abajo
             .cors(Customizer.withDefaults())
 
-            // 3. Sesión sin estado (Stateless)
+            //  Sesión sin estado (Stateless)
             .sessionManagement(session -> 
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
 
-            // 4. Autorización de rutas
+            //  Autorización de rutas
             .authorizeHttpRequests(auth -> auth
                 // Permitir que Angular haga el "pre-vuelo" (OPTIONS) sin autenticación
                 .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
 
-            // 5. Habilitar Basic Auth para que Angular mande el usuario:clave
+            //  Habilitar Basic Auth para que Angular mande el usuario:clave
             .httpBasic(Customizer.withDefaults());
 
         return http.build();
