@@ -10,14 +10,11 @@
     renewablesSharePercent:number;
     solarCapacityGw:number;
 } */
-
-    export class Energy{
-  
-    id?:number;
-    energyType?:string;
-    region?:string;
-    production?:number;
-    consumption?:number;
-    capacity?:number;
-    yearData?:number;
+export interface Energy {
+    entity: string;
+    code: string;
+    year: number;
+    windProduction: number;
+    solarProduction: number;
+    hydroProduction: number;
 }

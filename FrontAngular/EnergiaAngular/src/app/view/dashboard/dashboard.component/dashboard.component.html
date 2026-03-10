@@ -1,26 +1,35 @@
-<div class="table-container">
-    <h1>Energy</h1>
+<div class="dashboard-container">
+    <header class="header">
+        <h1>Producción de Energía Renovable</h1>
+        <p>Total de registros cargados: <strong>{{ listaEnergia.length }}</strong></p>
+    </header>
 
-    <table class="energy-table">
-        <thead>
-            <tr>
-                <th>Region</th>
-                <th>Año</th>
-                <th>Tipo de energia</th>
-                <th>Produccion</th>
-                <th>Consumo</th>
-                <th>Capacidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of listaEnergia">
-                <td>{{ item.region }}</td>
-                <td>{{ item.yearData }}</td>
-                <td>{{ item.energyType }}</td>
-                <td>{{ item.production }}</td>
-                <td>{{ item.consumption }}</td>
-                <td>{{ item.capacity }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>País / Entidad</th>
+                    <th>Código</th>
+                    <th>Año</th>
+                    <th>Solar (TWh)</th>
+                    <th>Eólica (TWh)</th>
+                    <th>Hidro (TWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listaEnergia">
+                    <td>{{ item.entity }}</td>
+                    <td>{{ item.code }}</td>
+                    <td>{{ item.year }}</td>
+                    <td class="value">{{ item.solarProduction || '0.00' }}</td>
+                    <td class="value">{{ item.windProduction || '0.00' }}</td>
+                    <td class="value">{{ item.hydroProduction || '0.00' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="listaEnergia.length === 0" class="loading-state">
+        <p>No se encontraron datos. Verifica la conexión con el servidor.</p>
+    </div>
 </div>

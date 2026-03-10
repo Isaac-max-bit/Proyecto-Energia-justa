@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/energy")
 // IMPORTANTE: Permitir que Angular (puerto 4200) acceda a estos datos
-@CrossOrigin(origins = "http://localhost:4200") 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 public class RenewableEnergyController {
 
     private final RenewableEnergyService renewableEnergyService;
