@@ -9,6 +9,9 @@ import { Energy } from '../../models/energy.model';
 export class EnergyService {
   // URL exacta que probamos en el navegador
   private apiUrl = "http://localhost:8080/api/energy/all";
+  private prodUrl= "http://localhost:8080/api/energy/produccion";
+  private eolicaUrl= "http://localhost:8080/api/energy/top-eolica";
+  private partUrl= "http://localhost:8080/api/energy/global-participacion";
 
   constructor(private http: HttpClient) {}
 
@@ -24,5 +27,18 @@ export class EnergyService {
     });
 
     return this.http.get<Energy[]>(this.apiUrl, { headers });
+  }
+
+  //TODO
+  getProduccion(){
+
+  }
+
+  getTopEeolica(){
+
+  }
+
+  getParticipacion(){
+
   }
 }
