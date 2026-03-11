@@ -20,7 +20,7 @@ public interface EnergyRepository extends JpaRepository<EnergyModel, Long> {
     @Query(value = "SELECT entity, windTwh FROM EnergyModel " +
                    "WHERE dataYear = :year AND LENGTH(code) = 3 " +
                    "AND windTwh IS NOT NULL " +
-                   "ORDER BY windTwh DESC LIMIT 10", nativeQuery = true)
+                   "ORDER BY windTwh DESC LIMIT 10"/*, nativeQuery = true Me daba error de query con este dato*/)
     List<Object[]> findTop10WindByYear(@Param("year") int year);
 
     // #5. Fuentes de energía y su participación en el consumo eléctrico total a nivel global.

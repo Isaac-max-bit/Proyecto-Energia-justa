@@ -14,7 +14,6 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // Referencias a los canvas del HTML
   @ViewChild('miGrafica') canvasBarra!: ElementRef;
   @ViewChild('graficaTorta') canvasTorta!: ElementRef;
   @ViewChild('graficaTendencia') canvasTendencia!: ElementRef;
@@ -24,7 +23,6 @@ export class DashboardComponent implements OnInit {
   chartTorta: any;
   chartTendencia: any;
 
-  // Variables vinculadas al HTML (ngModel y cálculos)
   listaCompleta: any[] = []; 
   listaFiltrada: any[] = [];
   filtro: string = '';
@@ -42,7 +40,7 @@ export class DashboardComponent implements OnInit {
     this.cargarTodo();
   }
 
-  // Carga principal: alimenta la tabla y las gráficas
+
     cargarTodo() {
     forkJoin({
         listaGeneral: this.energyService.getEnergy(),
@@ -63,7 +61,6 @@ export class DashboardComponent implements OnInit {
         
         this.filtrarDatos();
 
-        // PASO CRÍTICO:
         this.cDRef.detectChanges(); // Fuerza a Angular a renderizar los <canvas>
 
         setTimeout(() => {
@@ -77,12 +74,10 @@ export class DashboardComponent implements OnInit {
     if (!this.filtro) return null;
     
     const busqueda = this.filtro.toLowerCase().trim();
-    // Buscamos coincidencia exacta o que contenga el nombre
     return this.datosProduccionTabla.find(item => 
         item.region.toLowerCase().includes(busqueda)
     );
     }
-  // --- MÉTODOS QUE PIDE TU HTML ---
 
   filtrarDatos() {
     const busqueda = this.filtro.toLowerCase().trim();
@@ -100,7 +95,6 @@ export class DashboardComponent implements OnInit {
 
   calcularPorcentajeRegion(): string {
     if (this.listaFiltrada.length === 0) return '0.00';
-    // Ejemplo: Promedio de participación (puedes ajustar la lógica según tu API)
     return (this.listaFiltrada.length / 1.5).toFixed(2); 
   }
 
@@ -137,13 +131,13 @@ private renderPieChart() {
   const coloresDinamicos = this.generarPaletaColores(this.datosTorta.length);
 
   this.chartTorta = new Chart(this.canvasTorta.nativeElement, {
-    type: 'doughnut', // Te sugiero doughnut para que se vea más moderno
+    type: 'doughnut',
     data: {
       labels: this.datosTorta.map(item => item.region), 
       datasets: [{
         data: this.datosTorta.map(item => item.porcentaje_renovable || 0),
         backgroundColor: coloresDinamicos,
-        hoverOffset: 20 // Esto hace que la porción resalte al pasar el mouse
+        hoverOffset: 20
       }]
     },
     options: { 
@@ -153,7 +147,6 @@ private renderPieChart() {
         legend: { display: false }, // Ocultamos leyenda por exceso de datos
         tooltip: {
           callbacks: {
-            // Aquí añadimos el símbolo de porcentaje
             label: (context) => {
               const label = context.label || '';
               const value = context.parsed;
