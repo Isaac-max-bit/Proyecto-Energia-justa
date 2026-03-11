@@ -3,10 +3,24 @@
         <div class="title-area">
             <h1> 🌱 Energía Renovable Global</h1>
         </div>
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" [(ngModel)]="filtro" (input)="filtrarDatos()"
-                placeholder="Buscar país o código (AFG, ESP...)">
+        
+        <div class="controls-area">
+            <div class="year-selector">
+                <label for="yearInput">Año de análisis: </label>
+                <input 
+                    id="yearInput"
+                    type="number" 
+                    [(ngModel)]="yearActual" 
+                    (change)="cargarTodo()"
+                    min="1965" 
+                    max="2022">
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" [(ngModel)]="filtro" (input)="filtrarDatos()"
+                    placeholder="Buscar país o código (AFG, ESP...)">
+            </div>
         </div>
     </div>
 
@@ -39,25 +53,53 @@
                         <th>Solar (TWh)</th>
                     </tr>
                 </thead>
+                @if(resumenProduccionAnual){
+                    <tbody>
+                        <tr style="background-color: #ecfdf5; font-weight: bold; border-bottom: 2px solid #10b981;">
+                            <td>📍 {{ resumenProduccionAnual.region }} (Resumen {{ yearActual }})</td>
+                            <td>{{ yearActual }}</td>
+                            <td>{{ resumenProduccionAnual.wind_twh | number:'1.2-2' }}</td>
+                            <td class="text-green">{{ resumenProduccionAnual.hydro_twh | number:'1.2-2' }}</td>
+                            <td>{{ resumenProduccionAnual.solar_twh | number:'1.2-2' }}</td>
+                        </tr>
+                    </tbody>
+                }
                 <tbody>
-                    <tr *ngFor="let item of listaFiltrada">
+                    @for (item of listaFiltrada; track $index){
+                    <tr>
                         <td>{{ item.entity }}</td>
                         <td>{{ item.dataYear }}</td>
                         <td>{{ (item.windTwh || 0) | number:'1.2-2' }}</td>
                         <td class="text-green">{{ (item.hydroTwh || 0) | number:'1.2-2' }}</td>
                         <td>{{ (item.solarTwh || 0) | number:'1.2-2' }}</td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="dashboard-container">
-        <div class="chart-container">
-            <h3>📊 Comparativa de Producción (Top 10 resultados)</h3>
-            <div class="canvas-wrapper">
+
+    
+    <div class="charts-grid">
+        <div class="chart-box">
+            <h4>Top 10: Países de producción eólica</h4>
+            <div class="chart-wrapper">
                 <canvas #miGrafica></canvas>
             </div>
         </div>
-    </div>
 
+        <div class="chart-box">
+            <h4>Participación por Fuente de Energía</h4>
+            <div class="chart-wrapper">
+                <canvas #graficaTorta></canvas>
+            </div>
+        </div>
+
+        <div class="chart-box full-width">
+            <h4>Tendencia de Producción Solar (TWh)</h4>
+            <div class="chart-wrapper">
+                <canvas #graficaTendencia></canvas>
+            </div>
+        </div>
+    </div>
 </div>
