@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EnergyService } from '../../../services/energy.service/energy.service';
-import { Energy } from '../../../models/energy.model';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
 import { Chart } from 'chart.js/auto'; 
-import { ViewChild, ElementRef } from '@angular/core'; 
-import { CapacityService } from '../../../services/capacity.service/capacity.service';
-import { Capacity } from '../../../models/capacity.model';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -16,91 +11,132 @@ import { Capacity } from '../../../models/capacity.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-  // REFERENCIA AL ELEMENTO CANVAS DEL HTML
-  @ViewChild('miGrafica') canvas!: ElementRef;
-  chart: any;
 
-  listaCompleta: Energy[] = [];
-  listaFiltrada: Energy[] = [];
-  capacityLista: Capacity[]=[];
+export class DashboardComponent implements OnInit {
+  @ViewChild('miGrafica') canvasBarra!: ElementRef;
+  @ViewChild('graficaTorta') canvasTorta!: ElementRef;
+  @ViewChild('graficaTendencia') canvasTendencia!: ElementRef; 
+  
+  chartBarra: any;
+  chartTorta: any;
+  chartTendencia: any;
+
+  listaCompleta: any[] = []; 
+  listaFiltrada: any[] = [];
   filtro: string = '';
 
-  constructor(private energyService: EnergyService, private capacityService: CapacityService) {}
+  constructor(private energyService: EnergyService) {}
 
   ngOnInit(): void {
     this.obtenerDatos();
-    this.obtenerCapacity();
-  }
-
-  obtenerCapacity() {
-    this.capacityService.getCapacity().subscribe({
-      next: (data) => {
-        this.capacityLista = data;
-        console.log(data);
-      }
-    });
   }
 
   obtenerDatos() {
     this.energyService.getEnergy().subscribe({
       next: (data) => {
+        if (!data || data.length === 0) return;
         this.listaCompleta = data;
-        this.listaFiltrada = data;
-        //  GRÁFICA PARA DESPUÉS DE RECIBIR DATOS
-        this.generarGrafica();
-      }
+        this.listaFiltrada = [...data]; 
+
+
+        setTimeout(() => {
+          this.generarGraficas();
+        }, 1200); 
+      },
+      error: (err) => console.error('Error en API:', err)
     });
+  }
+
+  calcularProduccionTotal(): string {
+    const total = this.listaFiltrada.reduce((acc, item) => {
+      return acc + (Number(item.hydroTwh) || 0) + (Number(item.solarTwh) || 0) + (Number(item.windTwh) || 0);
+    }, 0);
+    return total.toLocaleString('en-US', { minimumFractionDigits: 2 });
+  }
+
+  calcularPorcentajeRegion(): string {
+    if (this.listaFiltrada.length === 0) return '0.00';
+    return (this.listaFiltrada.length / 100).toFixed(2); // Ajuste temporal para mostrar algo
   }
 
   filtrarDatos() {
-    const busqueda = this.filtro.toLowerCase();
+    const busqueda = this.filtro.toLowerCase().trim();
     this.listaFiltrada = this.listaCompleta.filter(item => 
-      item.entity.toLowerCase().includes(busqueda)
+      item.entity?.toLowerCase().includes(busqueda)
     );
-    //  ACTUALIZAMOS LA GRÁFICA AL FILTRAR
-    this.generarGrafica();
+    this.generarGraficas();
   }
 
-  generarGrafica() {
-    // Si ya existe una gráfica, la destruimos para crear la nueva
-    if (this.chart) {
-      this.chart.destroy();
+  generarGraficas() {
+    try {
+      this.destruirGraficas();
+      if (this.listaFiltrada.length > 0) {
+        this.renderBarChart();
+        this.renderPieChart();
+        this.renderLineChart();
+      }
+    } catch (error) {
+      console.error("Error renderizando gráficas:", error);
     }
+  }
 
-    // Tomamos los últimos 10 registros para que la gráfica 
-    const datosRecientes = this.listaFiltrada.slice(0, 10);
-    const etiquetas = datosRecientes.map(item => `${item.entity} (${item.year})`);
-    const valoresSolar = datosRecientes.map(item => item.solarProduction || 0);
-    const valoresHidro = datosRecientes.map(item => item.hydroProduction || 0);
+  private destruirGraficas() {
+    if (this.chartBarra) this.chartBarra.destroy();
+    if (this.chartTorta) this.chartTorta.destroy();
+    if (this.chartTendencia) this.chartTendencia.destroy();
+  }
 
-    this.chart = new Chart(this.canvas.nativeElement, {
-      type: 'line', // Tipo de gráfica: barras
+  private renderBarChart() {
+    if (!this.canvasBarra?.nativeElement) return;
+    const datos = [...this.listaFiltrada].slice(0, 10);
+    this.chartBarra = new Chart(this.canvasBarra.nativeElement, {
+      type: 'bar',
       data: {
-        labels: etiquetas,
+        labels: datos.map(item => item.entity),
         datasets: [
-          {
-            label: 'Energía Solar (TWh)',
-            data: valoresSolar,
-            backgroundColor: '#f1c40f'
-          },
-          {
-            label: 'Energía Hidroeléctrica (TWh)',
-            data: valoresHidro,
-            backgroundColor: '#3498db'
-          }
+          { label: 'Hidro', data: datos.map(item => item.hydroTwh || 0), backgroundColor: '#3b82f6' },
+          { label: 'Solar', data: datos.map(item => item.solarTwh || 0), backgroundColor: '#fbbf24' }
         ]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
+      options: { responsive: true, maintainAspectRatio: false }
     });
   }
 
-  calcularPromedio(campo: keyof Energy): string {
-    if (this.listaFiltrada.length === 0) return '0';
-    const suma = this.listaFiltrada.reduce((acc, item) => acc + (Number(item[campo]) || 0), 0);
-    return (suma / this.listaFiltrada.length).toFixed(2);
+  private renderPieChart() {
+    if (!this.canvasTorta?.nativeElement) return;
+    const item = this.listaFiltrada[0];
+    this.chartTorta = new Chart(this.canvasTorta.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['Solar', 'Hidro', 'Viento'],
+        datasets: [{
+          data: [item.solarTwh || 0, item.hydroTwh || 0, item.windTwh || 0],
+          backgroundColor: ['#fbbf24', '#3b82f6', '#10b981']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  }
+
+  private renderLineChart() {
+    if (!this.canvasTendencia?.nativeElement) return;
+
+    const datos = [...this.listaCompleta]
+      .filter(item => item.dataYear)
+      .sort((a, b) => a.dataYear - b.dataYear);
+
+    this.chartTendencia = new Chart(this.canvasTendencia.nativeElement, {
+      type: 'line',
+      data: {
+        labels: datos.map(item => item.dataYear),
+        datasets: [{
+          label: 'Producción Solar Global',
+          data: datos.map(item => item.solarTwh || 0),
+          borderColor: '#fbbf24',
+          fill: true
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
   }
 }

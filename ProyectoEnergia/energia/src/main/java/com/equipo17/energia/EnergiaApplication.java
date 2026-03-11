@@ -29,9 +29,9 @@ public class EnergiaApplication {
                 
                 // Llamamos al servicio para procesar los archivos
                 //comantado para que no se cargue la base de datos
-                /* energyService.cargarTodo(fileProd);
-                energyPorcentajeService.cargarTodo(fileShare);
-                energyCapacityService.cargarTodo(fileCap); */
+                // energyService.cargarTodo(fileProd);
+                // energyPorcentajeService.cargarTodo(fileShare);
+                // energyCapacityService.cargarTodo(fileCap); 
                 
                 System.out.println("--- ¡Carga de datos finalizada con éxito! ---");
             } catch (Exception e) {

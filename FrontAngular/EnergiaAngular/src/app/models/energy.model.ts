@@ -10,13 +10,22 @@
     renewablesSharePercent:number;
     solarCapacityGw:number;
 } */
-export interface Energy {
-    id?: number;         // Agregado para el track del @for
+// src/app/models/energy.model.ts
+export interface EnergyData {
+    // Datos del modelo principal
+    id: number;
     entity: string;
-    region?: string;     // Agregado si lo necesitas específicamente como 'region'
-    code?: string;
+    code: string;
     year: number;
-    windProduction: number;
-    solarProduction: number;
-    hydroProduction: number;
+    hydroTwh: number;
+    solarTwh: number;
+    windTwh: number;
+    otherRenewablesTwh: number;
+
+    // Nombres que vienen de EnergyPorcentajeService
+    porcentaje_renovable?: number;
+
+    // Nombres que vienen de EnergyCapacityService
+    capacidad_solar_global?: number;
+    anio?: number;
 }

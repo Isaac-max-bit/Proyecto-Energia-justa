@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Energy } from '../../../models/energy.model';
+import { EnergyData } from '../../../models/energy.model';
 import { EnergyService } from '../../../services/energy.service/energy.service';
 import { CommonModule } from '@angular/common'; // Opcional si usas directivas clásicas
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common'; // Opcional si usas directivas c
   styleUrl: './energy.component.css',
 })
 export class EnergyComponent implements OnInit {
-  energy: Energy[] = [];
+  energy: EnergyData[] = [];
 
   constructor(private energyService: EnergyService) {}
 
