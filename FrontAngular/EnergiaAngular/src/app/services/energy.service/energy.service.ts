@@ -25,23 +25,16 @@ export class EnergyService {
     return this.http.get<any[]>(`${this.baseUrl}/produccion?year=${year}`, { headers: this.getHeaders() });
   }
 
-  //  Porcentaje de energía renovable (Gráfico de Torta)
-  getParticipacion(year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/global-participacion?year=${year}`, { headers: this.getHeaders() });
+  //TODO
+  getProduccion(){
+
   }
 
-  //  Tendencia capacidad solar (Gráfico de Líneas)
-  getTendenciaSolar(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/solar-tendencia`, { headers: this.getHeaders() });
+  getTopEeolica(){
+
   }
 
-  //  Top 10 países eólica (Gráfico de Barras)
-  getTopEolica(year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/top-eolica?year=${year}`, { headers: this.getHeaders() });
-  }
+  getParticipacion(){
 
-  // Lista global de todas las fuentes
-  getEnergy(): Observable<EnergyData[]> {
-    return this.http.get<EnergyData[]>(`${this.baseUrl}/all`, { headers: this.getHeaders() });
   }
 }
