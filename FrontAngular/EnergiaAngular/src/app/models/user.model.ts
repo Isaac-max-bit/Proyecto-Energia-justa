@@ -1,19 +1,19 @@
 //con el nuevo back iria asi
 
-/* export interface User{
-    id: number;
-    email: string;      
-    password: string;   
-    role: string;  
-} */
-
 export class User{
+    id?: number;
+    email!: string;      
+    password!: string;   
+    role!: string;  
+}
+
+/* export class User{
     id?: number;
     email?: string;      
     password?: string;   
     role?: string;  
     enabled?:boolean;
-}
+} */
 /* export interface User {
     id: number;
     username: string;   

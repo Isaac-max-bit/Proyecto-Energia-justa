@@ -22,6 +22,14 @@ public class UserService {
     public UserModel crearUsuario(UserModel user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+
+        /* UserModel newUser = new UserModel();
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setRole("USER");
+        //newUser.setEnabled(true);
+
+        return userRepository.save(newUser); */
     }
 
     public String login(LoginRequest request) {
