@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserService {
-    private users: User[] = []; 
 
-    private apiUrl="http://localhost:8080/api/users/register"
+    private apiUrl="http://localhost:8080/api/users"
 
-    constructor(private http:HttpClient) { }
+    constructor(private http: HttpClient) { }
     
     getUsers(): Observable<User[]>{
         return this.http.get<User[]>(this.apiUrl);
@@ -21,12 +20,4 @@ export class UserService {
         return this.http.post<User>(this.apiUrl, user);
     }
     
-    
-    /* getUsers(): User[] {
-        return this.users;
-    } */
-    /* addUser(user: User): void {
-        this.users.push(user);
-        console.log('Usuario guardado en el servicio:', user);
-    } */
 }

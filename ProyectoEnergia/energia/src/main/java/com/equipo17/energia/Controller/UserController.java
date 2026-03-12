@@ -1,4 +1,4 @@
-package com.equipo17.energia.Controller;
+/* package com.equipo17.energia.Controller;
 
 import com.equipo17.energia.Model.UserModel;
 import com.equipo17.energia.Service.UserService; //Service para encriptar la clave
@@ -11,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@Tag(name = "Usuarios", description = "Gestión de usuarios y autenticación")
 
 @RestController
 @RequestMapping("/api/users")
-@Tag(name = "Usuarios", description = "Gestión de usuarios y autenticación")
+
 @CrossOrigin(origins = "*")
 public class UserController {
 
@@ -23,7 +24,7 @@ public class UserController {
 
     // REGISTRO 
     @PostMapping("/register")
-    @Operation(summary = "Registrar un nuevo usuario")
+    //@Operation(summary = "Registrar un nuevo usuario")
     public ResponseEntity<UserModel> register(@RequestBody UserModel user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.crearUsuario(user));
     }
@@ -102,4 +103,4 @@ public class UserController {
         return ResponseEntity.ok(response);
     }    
     
-} */
+} */ 

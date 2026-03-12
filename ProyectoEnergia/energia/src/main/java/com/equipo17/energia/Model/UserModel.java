@@ -1,4 +1,4 @@
-package com.equipo17.energia.Model;
+/* package com.equipo17.energia.Model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -26,10 +26,10 @@ public class UserModel {
     @Column(nullable = false)
     @Schema(description = "Contraseña encriptada")
     private String password;
-
+ @Schema(example = "ADMIN", description = "Roles: ADMIN, USER, ANALYST")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Schema(example = "ADMIN", description = "Roles: ADMIN, USER, ANALYST")
+   
     private Role role;
 
     public enum Role {
@@ -37,4 +37,4 @@ public class UserModel {
     }
 
     
-}
+} */

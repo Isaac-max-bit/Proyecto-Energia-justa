@@ -1,4 +1,4 @@
-package com.equipo17.energia.Service;
+/* package com.equipo17.energia.Service;
 
 import com.equipo17.energia.Model.UserModel;
 import com.equipo17.energia.Repository.UserRepository;
@@ -30,7 +30,7 @@ public class UserService {
         //newUser.setEnabled(true);
 
         return userRepository.save(newUser); */
-    }
+ /*    }
 
     public String login(LoginRequest request) {
         // Buscamos por el email que llega en el request
@@ -46,7 +46,7 @@ public class UserService {
     public List<UserModel> findAll() {
         return userRepository.findAll();
     }
-}
+} */
 
 /* import java.util.List;
 import java.util.Optional;
@@ -115,4 +115,4 @@ public class UserService {
         }
         return "Login correcto";
     }
-} */
+} */ 

@@ -15,11 +15,11 @@
                         <span class="input-group-text bg-success">Country Selector</span>
                         <select [(ngModel)]="newCompany.country" class="form-select form-select-sm">
                             <option [ngValue]="undefined" disabled selected>Select a country</option>
-                            @for(c of countries; track $index){
+                      <!--       @for(c of countries; track $index){
                             <option [ngValue]="c">
                                 {{c.name}}
                             </option>
-                            }
+                            } -->
                         </select>
                     </div>
                 <button (click)="saveCompany()" class="btn btn-outline-success">Create company</button>
@@ -38,13 +38,13 @@
             </thead>
 
             <tbody>
-                @for (c of companies; track $index){
+            <!--     @for (c of companies; track $index){
                 <tr>
                     <td>{{c.id}}</td>
                     <td>{{c.name}}</td>
                     <td>{{c.country?.name}}</td>
                 </tr>
-                }
+                } -->
             </tbody>
         </table>
     </div>

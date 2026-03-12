@@ -18,17 +18,17 @@ import { User } from '../../../models/user.model';
 })
 export class RegisterComponent implements OnInit {
   userForm: FormGroup;
-
+  newUser: User = new User();
   constructor(
     private userSer: UserService, 
     private router: Router         
   ) {
     // Definimos el formulario con los campos necesarios
     this.userForm = new FormGroup({
-      //username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      role: new FormControl('usuario', [Validators.required])
+      role: new FormControl('', [Validators.required])
     });
   }
 
@@ -37,10 +37,15 @@ export class RegisterComponent implements OnInit {
   // Método para procesar el registro
   onRegister(): void {
     if (this.userForm.valid) {
-     /*  const newUser: User = this.userForm.value;
-
-      this.userSer.addUser(newUser); */
-      this.userSer.addUser(this.userForm.value);
+     
+      this.newUser.email=this.userForm.value.email;
+      this.newUser.password=this.userForm.value.password;
+      this.newUser.role=this.userForm.value.role;
+      
+      this.userSer.addUser(this.newUser).subscribe(data=>{
+        console.log(data);
+      })
+      //this.userSer.addUser(this.userForm.value);
       
       console.log('Usuario registrado con éxito:');
       
