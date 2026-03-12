@@ -86,17 +86,70 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  calcularProduccionTotal(): string {
-    const total = this.listaFiltrada.reduce((acc, item) => {
-      return acc + (Number(item.hydroTwh) || 0) + (Number(item.solarTwh) || 0) + (Number(item.windTwh) || 0);
-    }, 0);
-    return total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+calcularProduccionTotal(): string {
+  // 1. Solo tomamos los datos que coincidan con el año que el usuario ve
+  // 2. Solo tomamos los que tengan código ISO (países)
+  const datosLimpios = this.listaCompleta.filter(item => 
+    item.dataYear === this.yearActual &&   // Filtro de año (usa el nombre de propiedad de tu interface)
+    item.code && item.code.trim() !== '' && // Solo países
+    item.code !== 'OWID_WRL'                // Excluir total mundial manual
+  );
+
+  // 3. Si hay un filtro de búsqueda, filtramos sobre esos datos limpios
+  const busqueda = this.filtro.toLowerCase().trim();
+  const datosFinales = busqueda 
+    ? datosLimpios.filter(item => item.entity.toLowerCase().includes(busqueda))
+    : datosLimpios;
+
+  const total = datosFinales.reduce((acc, item) => {
+    return acc + (Number(item.hydroTwh) || 0) + 
+                 (Number(item.solarTwh) || 0) + 
+                 (Number(item.windTwh) || 0);
+  }, 0);
+
+  return total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+calcularPorcentajeRegion(): string {
+  // 1. Verificamos que existan datos cargados
+  if (!this.datosTorta || this.datosTorta.length === 0) {
+    return '0.00';
   }
 
-  calcularPorcentajeRegion(): string {
-    if (this.listaFiltrada.length === 0) return '0.00';
-    return (this.listaFiltrada.length / 1.5).toFixed(2); 
+  // 2. Determinamos qué lista usar: la completa o una filtrada
+  let listaParaCalcular: any[];
+  const busqueda = this.filtro?.toLowerCase().trim();
+
+  if (!busqueda) {
+    // Si no hay filtro, usamos todas las regiones (Promedio Global)
+    listaParaCalcular = this.datosTorta;
+  } else {
+    // Si hay filtro, buscamos las coincidencias (ej: "Africa")
+    listaParaCalcular = this.datosTorta.filter(item => {
+      if (!item.region) return false;
+      // Normalizamos el texto eliminando espacios especiales (&nbsp;)
+      const regionLimpia = item.region.replace(/\u00A0/g, ' ').toLowerCase();
+      return regionLimpia.includes(busqueda);
+    });
   }
+
+  // 3. Si después de filtrar no hay resultados, retornamos 0
+  if (listaParaCalcular.length === 0) {
+    return '0.00';
+  }
+
+  // 4. Calculamos el promedio sobre la lista seleccionada
+  const suma = listaParaCalcular.reduce((acc, item) => {
+    // Usamos el nombre exacto de la propiedad de tu JSON
+    const valor = Number(item.porcentaje_renovable);
+    return acc + (isNaN(valor) ? 0 : valor);
+  }, 0);
+
+  const promedio = suma / listaParaCalcular.length;
+
+  // 5. Retornamos el valor con 2 decimales
+  return promedio.toFixed(2);
+}
 
   // --- LÓGICA DE GRÁFICAS ---
 
