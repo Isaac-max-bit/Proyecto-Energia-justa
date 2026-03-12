@@ -7,7 +7,7 @@ import { EnergyData } from '../../models/energy.model';
   providedIn: 'root',
 })
 export class EnergyService {
-  private baseUrl = "http://localhost:8081/api/energy";
+  private baseUrl = "http://localhost:8080/api/energy";
 
   constructor(private http: HttpClient) {}
 

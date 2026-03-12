@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             this.authService.saveCredentials(email, password);
 
             // 2. Intentamos la conexión
-            this.http.get('http://localhost:8081/api/energy/', { observe: 'response' })
+            this.http.get('http://localhost:8080/api/energy/', { observe: 'response' })
                 .subscribe({
                     next: (response) => {
                         // Si entra aquí, es que NO hubo error 401. ¡Éxito!
