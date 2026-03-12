@@ -9,6 +9,7 @@ import { CompanyComponent } from './view/company/company.component/company.compo
 import { EnergyTypeComponent } from './view/energy/energy-type.component/energy-type.component';
 import { UserComponent } from './view/user/user.component/user.component';
 import { EnergyComponent } from './view/energy/energy.component/energy.component';
+import { authGuard } from './services/authenticator.service/auth.guard';
 
 export const routes: Routes = [
     // 1. Al abrir la app, ir al login
@@ -19,7 +20,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     
     // 3. Ruta Principal (Tu nuevo Home)
-    { path: 'home', component: DashboardComponent },
+    { path: 'home', component: DashboardComponent, canActivate: [authGuard]},
     
     // 4. ALIAS: Si intentas entrar a /dashboard, te redirige a /home
     // Esto evita que te mande al login cuando usas el enlace viejo

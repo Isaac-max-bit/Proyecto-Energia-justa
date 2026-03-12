@@ -23,6 +23,54 @@
     font-size: 1.8rem;
     margin: 0;
 }
+.controls-area {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.year-selector {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    width: 220px;
+    transition: border-color 0.2s;
+}
+
+.year-selector:focus-within {
+    border-color: #3b82f6;
+}
+
+.year-selector label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    white-space: nowrap;
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.year-selector input {
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #64748b;
+    background: transparent;
+}
+
+.year-selector input::-webkit-outer-spin-button,
+.year-selector input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+.year-selector input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield; /* Estándar actual */
+}
 
 .search-box {
     background: white;
@@ -40,6 +88,10 @@
     width: 100%;
     padding-left: 10px;
     color: #64748b;
+}
+
+.search-box:focus-within {
+    border-color: #3b82f6;
 }
 
 /* Tarjetas */
@@ -124,6 +176,17 @@ td {
     font-weight: 600;
 }
 
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 300px; /* O el valor que prefieras */
+  width: 100%;
+}
 /* Gráficas */
 .charts-grid {
     display: grid;
@@ -140,9 +203,4 @@ td {
 
 .full-width {
     grid-column: span 2;
-}
-
-.chart-wrapper {
-    height: 300px;
-    position: relative;
 }
