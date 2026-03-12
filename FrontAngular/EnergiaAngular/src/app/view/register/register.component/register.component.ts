@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ) {
     // Definimos el formulario con los campos necesarios
     this.userForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      //username: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       role: new FormControl('usuario', [Validators.required])
@@ -37,11 +37,12 @@ export class RegisterComponent implements OnInit {
   // Método para procesar el registro
   onRegister(): void {
     if (this.userForm.valid) {
-      const newUser: User = this.userForm.value;
+     /*  const newUser: User = this.userForm.value;
 
-      this.userSer.addUser(newUser);
+      this.userSer.addUser(newUser); */
+      this.userSer.addUser(this.userForm.value);
       
-      console.log('Usuario registrado con éxito:', newUser);
+      console.log('Usuario registrado con éxito:');
       
 
       this.router.navigate(['/login']);

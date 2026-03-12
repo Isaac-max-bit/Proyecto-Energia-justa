@@ -9,19 +9,24 @@ import { Observable } from 'rxjs';
 export class UserService {
     private users: User[] = []; 
 
-    private apiUrl="http://localhost:8081/api/users"
+    private apiUrl="http://localhost:8080/api/users/register"
 
     constructor(private http:HttpClient) { }
-
-    getUsers2(): Observable<User[]>{
+    
+    getUsers(): Observable<User[]>{
         return this.http.get<User[]>(this.apiUrl);
     }
-    addUser(user: User): void {
+
+    addUser(user: User): Observable<User> {
+        return this.http.post<User>(this.apiUrl, user);
+    }
+    
+    
+    /* getUsers(): User[] {
+        return this.users;
+    } */
+    /* addUser(user: User): void {
         this.users.push(user);
         console.log('Usuario guardado en el servicio:', user);
-    }
-
-    getUsers(): User[] {
-        return this.users;
-    }
+    } */
 }

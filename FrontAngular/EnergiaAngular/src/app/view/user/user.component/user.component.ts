@@ -7,7 +7,8 @@ import { UserService } from '../../../services/user.service/user.service';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
-export class UserComponent implements OnInit{
+export class UserComponent {}
+/* export class UserComponent implements OnInit{
 
   users: User[]=[];
   
@@ -25,11 +26,11 @@ export class UserComponent implements OnInit{
     });
   }
   
-  /* saveUser() {
+  saveUser() {
     this.userService.addUser(this.newUser).subscribe(data => {
       this.loadUsers();
       this.newUser = new User();
     });
-  } */
+  }
 
-}
+} */
